@@ -32,7 +32,7 @@ function Header() {
   const isActive = (path: string) => location.pathname === path;
   return (
     <div className="w-full bg-background shadow-md mb-5 flex justify-center">
-      <div className="flex justify-between w-full bg-background px-4 py-2 max-w-7xl ">
+      <div className="flex gap-4 justify-between w-full bg-background px-4 py-2 max-w-7xl ">
         {/* Title for all view */}
         <div className="flex gap-1 sm:gap-2 items-center">
           <div
@@ -83,7 +83,7 @@ function Header() {
         </div>
 
         {/* Notification, bell and login/profile for tablet view */}
-         <div className="hidden md:flex lg:hidden gap-3  justify-center items-center text-muted-foreground">
+         <div className="hidden md:flex lg:hidden gap-2  justify-center items-center text-muted-foreground">
           <button>
             <Search className="h-5 w-5" />
           </button>
@@ -133,7 +133,7 @@ function Header() {
 
 
         {/* Quick Access  for Large View*/}
-        <div className="hidden lg:flex gap-4 justify-center items-center text-muted-foreground">
+        <div className="hidden lg:flex lg:gap-2 xl:gap-4  justify-center items-center text-muted-foreground">
           {headerData.map((item) => (
             <Link key={item.title} to={item.url} className="text-sm">
               {item.title}
@@ -169,7 +169,7 @@ function Header() {
         </div>
 
         {/*Notification, Search and Login/Profile For Large Screen */}
-        <div className="hidden lg:flex gap-4 items-center text-muted-foreground">
+        <div className="hidden lg:flex gap-2 items-center text-muted-foreground">
           <div className="border border-muted-foreground flex gap-1 items-center rounded-3xl px-2 py-1.5">
             <Search size={20} />
             <input
@@ -210,7 +210,7 @@ function Header() {
                   <Button
                     variant={"default"}
                     size={"sm"}
-                    className="p-4 shadow-lg  bg-linear-to-r from-blue-600  to-sky-500  from-blue-600  to-sky-500 hover:from-sky-600 hover:to-blue-600
+                    className="p-4 shadow-lg  bg-linear-to-r from-blue-600  to-sky-500 hover:from-sky-600 hover:to-blue-600
                    hover:scale-[1.03] hover:shadow-xl"
                   >
                   Login/Signup
