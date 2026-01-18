@@ -26,14 +26,14 @@ import { useState } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 
 function Header() {
-  const isLoggedIn = true;
+  const isLoggedIn = false;
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
   const isActive = (path: string) => location.pathname === path;
   return (
     <div className="w-full bg-background shadow-md mb-5 flex justify-center">
       <div className="flex justify-between w-full bg-background px-4 py-2 max-w-7xl ">
-        {/* Title */}
+        {/* Title for all view */}
         <div className="flex gap-1 sm:gap-2 items-center">
           <div
             className="flex items-center justify-center
@@ -81,6 +81,56 @@ function Header() {
             </DropdownMenu>
           </div>
         </div>
+
+        {/* Notification, bell and login/profile for tablet view */}
+         <div className="hidden md:flex lg:hidden gap-3  justify-center items-center text-muted-foreground">
+          <button>
+            <Search className="h-5 w-5" />
+          </button>
+
+          <div className="flex items-center">
+            {/* Notifications */}
+            <Button variant="ghost" size="icon" className="relative">
+              <Bell />
+              <Badge className="absolute top-1 right-1 h-2 w-2 p-0 bg-red-500" />
+            </Button>
+          </div>
+
+          
+          {isLoggedIn ? (
+            <Link
+                    key="Profile"
+                    to="/profile"
+                    onClick={() => setMobileOpen(false)}
+                    className={`flex gap-2 px-2 py-2 rounded-md text-sm font-medium transition-colors ${
+                      isActive("/profile")
+                        ? "bg-primary/10 text-primary"
+                        : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+                    }`}
+                  >
+                    <CircleUserRound className="text-blue-600" />
+                    <h3>Profile</h3>
+                  </Link>
+          ) : <div>
+                <Link
+                    key={"Login"}
+                    to={"/login"}
+                    onClick={() => setMobileOpen(false)}
+                    className="px-3 py-3 "
+                >
+                  <Button
+                    variant={"default"}
+                    size={"sm"}
+                    className="p-4 shadow-lg  bg-linear-to-r from-blue-600  to-sky-500 hover:from-sky-600 hover:to-blue-600
+                   hover:scale-[1.03] hover:shadow-xl"
+                  >
+                  Login/Signup
+                </Button>
+                </Link>
+              </div>
+             }
+          </div>
+
 
         {/* Quick Access  for Large View*/}
         <div className="hidden lg:flex gap-4 justify-center items-center text-muted-foreground">
@@ -137,47 +187,7 @@ function Header() {
           </div>
 
           {isLoggedIn ? (
-            <CircleUserRound
-              size={30}
-              strokeWidth={1.5}
-              className="text-blue-600 "
-            />
-          ) : (
-            <Button variant={"default"} className="rounded-2xl bg-blue-600">
-              Login
-            </Button>
-          )}
-        </div>
-
-        {/* Notification, Search and Login/Profile For Mobile Screen */}
-        <div className="flex lg:hidden gap-3  justify-center items-center text-muted-foreground">
-          <button>
-            <Search className="h-5 w-5" />
-          </button>
-
-          <div className="flex items-center">
-            {/* Notifications */}
-            <Button variant="ghost" size="icon" className="relative">
-              <Bell />
-              <Badge className="absolute top-1 right-1 h-2 w-2 p-0 bg-red-500" />
-            </Button>
-          </div>
-
-          <div className="flex md:hidden">
-            {/* Mobile Menu Button - Now at the end */}
-            <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
-              <SheetTrigger asChild>
-                <Button variant="ghost" size="icon-lg" className="lg:hidden">
-                  {mobileOpen ? (
-                    <X className="h-5 w-5" />
-                  ) : (
-                    <Menu className="h-10 w-10" />
-                  )}
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="right" className="w-64 px-4">
-                <div className="flex flex-col space-y-2 mt-12">
-                  <Link
+            <Link
                     key="Profile"
                     to="/profile"
                     onClick={() => setMobileOpen(false)}
@@ -190,6 +200,69 @@ function Header() {
                     <CircleUserRound className="text-blue-600" />
                     <h3>Profile</h3>
                   </Link>
+          ) : <div>
+                <Link
+                    key={"Login"}
+                    to={"/login"}
+                    onClick={() => setMobileOpen(false)}
+                    className="px-3 py-3 "
+                >
+                  <Button
+                    variant={"default"}
+                    size={"sm"}
+                    className="p-4 shadow-lg  bg-linear-to-r from-blue-600  to-sky-500  from-blue-600  to-sky-500 hover:from-sky-600 hover:to-blue-600
+                   hover:scale-[1.03] hover:shadow-xl"
+                  >
+                  Login/Signup
+                </Button>
+                </Link>
+              </div>
+             }
+        </div>
+
+        {/* Notification, Search and Login/Profile For Mobile Screen */}
+        <div className="flex md:hidden gap-3  justify-center items-center text-muted-foreground">
+          <button>
+            <Search className="h-5 w-5" />
+          </button>
+
+          <div className="flex items-center">
+            {/* Notifications */}
+            <Button variant="ghost" size="icon" className="relative">
+              <Bell />
+              <Badge className="absolute top-1 right-1 h-2 w-2 p-0 bg-red-500" />
+            </Button>
+          </div>
+
+          <div >
+            {/* Mobile Menu Button - Now at the end */}
+            <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon-lg" className="lg:hidden">
+                  {mobileOpen ? (
+                    <X className="h-5 w-5" />
+                  ) : (
+                    <Menu className="h-5 w-5" />
+                  )}
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-64 px-4">
+                <div className="flex flex-col space-y-2 mt-12">
+                  
+                  { isLoggedIn && <Link
+                    key="Profile"
+                    to="/profile"
+                    onClick={() => setMobileOpen(false)}
+                    className={`flex gap-2 px-2 py-2 rounded-md text-sm font-medium transition-colors ${
+                      isActive("/profile")
+                        ? "bg-primary/10 text-primary"
+                        : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+                    }`}
+                  >
+                    <CircleUserRound className="text-blue-600" />
+                    <h3>Profile</h3>
+                  </Link>
+                  }
 
                   {[...headerData, ...moreOptionData].map((item) => (
                     <Link
@@ -206,15 +279,25 @@ function Header() {
                     </Link>
                   ))}
 
-                  {!isLoggedIn && (
-                    <Button
-                      variant={"default"}
-                      size={"sm"}
-                      className="rounded-2xl bg-blue-600"
-                    >
-                      Login/Signup
-                    </Button>
-                  )}
+                  {!isLoggedIn && 
+                    <div>
+                      <Link
+                          key={"Login"}
+                          to={"/login"}
+                          onClick={() => setMobileOpen(false)}
+                          className="px-3 py-3 "
+                      >
+                        <Button
+                          variant={"default"}
+                          size={"sm"}
+                          className="p-4 shadow-lg  bg-linear-to-r from-blue-600  to-sky-500"
+                        >
+                        Login/Signup
+                      </Button>
+                      </Link>
+                    </div>
+                    
+                  }
                 </div>
               </SheetContent>
             </Sheet>

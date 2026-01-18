@@ -10,11 +10,29 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SuccessStoryIndexRouteImport } from './routes/success-story/index'
+import { Route as ResourcesIndexRouteImport } from './routes/resources/index'
 import { Route as ProfileIndexRouteImport } from './routes/profile/index'
+import { Route as OurPlansIndexRouteImport } from './routes/our-plans/index'
+import { Route as LoginIndexRouteImport } from './routes/login/index'
+import { Route as FreeMocksIndexRouteImport } from './routes/free-mocks/index'
+import { Route as ExamsIndexRouteImport } from './routes/exams/index'
+import { Route as EditorialsCornerIndexRouteImport } from './routes/editorials-corner/index'
+import { Route as CurrentAffairsIndexRouteImport } from './routes/current-affairs/index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SuccessStoryIndexRoute = SuccessStoryIndexRouteImport.update({
+  id: '/success-story/',
+  path: '/success-story/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResourcesIndexRoute = ResourcesIndexRouteImport.update({
+  id: '/resources/',
+  path: '/resources/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProfileIndexRoute = ProfileIndexRouteImport.update({
@@ -22,31 +40,124 @@ const ProfileIndexRoute = ProfileIndexRouteImport.update({
   path: '/profile/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OurPlansIndexRoute = OurPlansIndexRouteImport.update({
+  id: '/our-plans/',
+  path: '/our-plans/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginIndexRoute = LoginIndexRouteImport.update({
+  id: '/login/',
+  path: '/login/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FreeMocksIndexRoute = FreeMocksIndexRouteImport.update({
+  id: '/free-mocks/',
+  path: '/free-mocks/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExamsIndexRoute = ExamsIndexRouteImport.update({
+  id: '/exams/',
+  path: '/exams/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EditorialsCornerIndexRoute = EditorialsCornerIndexRouteImport.update({
+  id: '/editorials-corner/',
+  path: '/editorials-corner/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CurrentAffairsIndexRoute = CurrentAffairsIndexRouteImport.update({
+  id: '/current-affairs/',
+  path: '/current-affairs/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/current-affairs': typeof CurrentAffairsIndexRoute
+  '/editorials-corner': typeof EditorialsCornerIndexRoute
+  '/exams': typeof ExamsIndexRoute
+  '/free-mocks': typeof FreeMocksIndexRoute
+  '/login': typeof LoginIndexRoute
+  '/our-plans': typeof OurPlansIndexRoute
   '/profile': typeof ProfileIndexRoute
+  '/resources': typeof ResourcesIndexRoute
+  '/success-story': typeof SuccessStoryIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/current-affairs': typeof CurrentAffairsIndexRoute
+  '/editorials-corner': typeof EditorialsCornerIndexRoute
+  '/exams': typeof ExamsIndexRoute
+  '/free-mocks': typeof FreeMocksIndexRoute
+  '/login': typeof LoginIndexRoute
+  '/our-plans': typeof OurPlansIndexRoute
   '/profile': typeof ProfileIndexRoute
+  '/resources': typeof ResourcesIndexRoute
+  '/success-story': typeof SuccessStoryIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/current-affairs/': typeof CurrentAffairsIndexRoute
+  '/editorials-corner/': typeof EditorialsCornerIndexRoute
+  '/exams/': typeof ExamsIndexRoute
+  '/free-mocks/': typeof FreeMocksIndexRoute
+  '/login/': typeof LoginIndexRoute
+  '/our-plans/': typeof OurPlansIndexRoute
   '/profile/': typeof ProfileIndexRoute
+  '/resources/': typeof ResourcesIndexRoute
+  '/success-story/': typeof SuccessStoryIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/profile'
+  fullPaths:
+    | '/'
+    | '/current-affairs'
+    | '/editorials-corner'
+    | '/exams'
+    | '/free-mocks'
+    | '/login'
+    | '/our-plans'
+    | '/profile'
+    | '/resources'
+    | '/success-story'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/profile'
-  id: '__root__' | '/' | '/profile/'
+  to:
+    | '/'
+    | '/current-affairs'
+    | '/editorials-corner'
+    | '/exams'
+    | '/free-mocks'
+    | '/login'
+    | '/our-plans'
+    | '/profile'
+    | '/resources'
+    | '/success-story'
+  id:
+    | '__root__'
+    | '/'
+    | '/current-affairs/'
+    | '/editorials-corner/'
+    | '/exams/'
+    | '/free-mocks/'
+    | '/login/'
+    | '/our-plans/'
+    | '/profile/'
+    | '/resources/'
+    | '/success-story/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CurrentAffairsIndexRoute: typeof CurrentAffairsIndexRoute
+  EditorialsCornerIndexRoute: typeof EditorialsCornerIndexRoute
+  ExamsIndexRoute: typeof ExamsIndexRoute
+  FreeMocksIndexRoute: typeof FreeMocksIndexRoute
+  LoginIndexRoute: typeof LoginIndexRoute
+  OurPlansIndexRoute: typeof OurPlansIndexRoute
   ProfileIndexRoute: typeof ProfileIndexRoute
+  ResourcesIndexRoute: typeof ResourcesIndexRoute
+  SuccessStoryIndexRoute: typeof SuccessStoryIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -58,6 +169,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/success-story/': {
+      id: '/success-story/'
+      path: '/success-story'
+      fullPath: '/success-story'
+      preLoaderRoute: typeof SuccessStoryIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/resources/': {
+      id: '/resources/'
+      path: '/resources'
+      fullPath: '/resources'
+      preLoaderRoute: typeof ResourcesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/profile/': {
       id: '/profile/'
       path: '/profile'
@@ -65,12 +190,62 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProfileIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/our-plans/': {
+      id: '/our-plans/'
+      path: '/our-plans'
+      fullPath: '/our-plans'
+      preLoaderRoute: typeof OurPlansIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login/': {
+      id: '/login/'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/free-mocks/': {
+      id: '/free-mocks/'
+      path: '/free-mocks'
+      fullPath: '/free-mocks'
+      preLoaderRoute: typeof FreeMocksIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/exams/': {
+      id: '/exams/'
+      path: '/exams'
+      fullPath: '/exams'
+      preLoaderRoute: typeof ExamsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/editorials-corner/': {
+      id: '/editorials-corner/'
+      path: '/editorials-corner'
+      fullPath: '/editorials-corner'
+      preLoaderRoute: typeof EditorialsCornerIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/current-affairs/': {
+      id: '/current-affairs/'
+      path: '/current-affairs'
+      fullPath: '/current-affairs'
+      preLoaderRoute: typeof CurrentAffairsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CurrentAffairsIndexRoute: CurrentAffairsIndexRoute,
+  EditorialsCornerIndexRoute: EditorialsCornerIndexRoute,
+  ExamsIndexRoute: ExamsIndexRoute,
+  FreeMocksIndexRoute: FreeMocksIndexRoute,
+  LoginIndexRoute: LoginIndexRoute,
+  OurPlansIndexRoute: OurPlansIndexRoute,
   ProfileIndexRoute: ProfileIndexRoute,
+  ResourcesIndexRoute: ResourcesIndexRoute,
+  SuccessStoryIndexRoute: SuccessStoryIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -12,17 +12,17 @@ export const headerData = [
     {
         title: 'Free Mocks',
         allUsersAccess: true,
-        url: '/freeMocks'
+        url: '/free-mocks'
     },
     {
         title: 'Our Plans',
         allUsersAccess: true,
-        url: '/ourPlans'
+        url: '/our-plans'
     },
     {
         title: 'Editorials Corner',
         allUsersAccess: true,
-        url: '/editorialsCorner'
+        url: '/editorials-corner'
     }
 ]
 
@@ -30,12 +30,12 @@ export const moreOptionData = [
     {
         title: 'Success Story',
         allUsersAccess: false,
-        url: '/successStory'
+        url: '/success-story'
     },
     {
         title: 'Current Affairs',
         allUsersAccess: false,
-        url: '/currentAffairs'
+        url: '/current-affairs'
     },
     {
         title: 'Resources',
