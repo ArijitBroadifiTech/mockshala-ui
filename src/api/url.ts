@@ -1,0 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+export const BASE_URL =
+  import.meta.env.VITE_API_BASE_URL ??
+  'https://userapi.mockshala.com/api'
+
+  export const apiUrl = {
+    banners: '/banners'
+  }
+
+  export const IMAGE_BASE_URL = import.meta.env.VITE_PUBLIC_IMAGE_BASE_URL ?? "https://mockshala.s3.ap-south-1.amazonaws.com/";

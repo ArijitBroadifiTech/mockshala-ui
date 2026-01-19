@@ -1,7 +1,6 @@
 import { Link, useLocation } from "@tanstack/react-router";
 import {
   Bell,
-  BookOpen,
   ChevronDown,
   CircleUserRound,
   Menu,
@@ -19,38 +18,39 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
+  DropdownMenuItem,
 } from "../ui/dropdown-menu";
 import { DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
 import { Badge } from "../ui/badge";
 import { useState } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
+import { mockShalaLogo } from "@/assets";
+import ProfileIcon from "../ProfileIcon";
 
 function Header() {
   const isLoggedIn = true;
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
   const isActive = (path: string) => location.pathname === path;
+
   return (
     <header className='sticky top-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm shadow-md '>
     <div className="w-full  px-4 py-2 max-w-7xl mx-auto">
       <div className="flex gap-4 justify-between w-full  ">
         {/* Title for all view */}
-        <div className="flex gap-1 sm:gap-2 items-center">
-          <div
-            className="flex items-center justify-center
-            w-10 h-10 bg-linear-to-br from-blue-600 to-sky-200 rounded-xl"
-          >
-            <BookOpen className="h-5 w-5 text-white" />
-          </div>
-          <h1 className="text-xl sm:text-2xl font-bold bg-linear-to-r from-indigo-600 via-blue-500 to-cyan-400 bg-clip-text text-transparent">
-            MockShala
-          </h1>
+        <div className="flex justify-center items-center">
+
+          <img src={mockShalaLogo} alt="mockShalaLogo" className="h-7 xl:h-8 w-auto"/>
+
         </div>
 
         {/* Quick Access  for Tablet View*/}
-        <div className="hidden md:flex lg:hidden gap-4 justify-center items-center text-muted-foreground">
+        <div className="hidden  md:flex lg:hidden justify-center items-center text-muted-foreground">
           {headerDataTablet.map((item) => (
-            <Link key={item.title} to={item.url} className="text-sm">
+            <Link 
+              key={item.title} 
+              to={item.url} 
+              className={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${isActive(item.url) ? 'bg-primary/10 text-primary' : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground'}`}>
               {item.title}
             </Link>
           ))}
@@ -67,15 +67,16 @@ function Header() {
               <DropdownMenuContent className="w-48 p-2 z-50" align="end">
                 <DropdownMenuGroup>
                   {moreOptionDataTablet.map((item) => (
-                    <div className="my-2">
+                    <DropdownMenuItem  key={item.url} asChild>              
                       <Link
                         key={item.title}
                         to={item.url}
-                        className="text-sm text-muted-foreground my-2"
+                         className={`w-full cursor-pointer p-2 my-2 rounded-md
+                          ${isActive(item.url)? 'bg-primary/10 text-primary': 'text-muted-foreground hover:bg-accent hover:text-accent-foreground'}`}
                       >
                         {item.title}
                       </Link>
-                    </div>
+                    </DropdownMenuItem>
                   ))}
                 </DropdownMenuGroup>
               </DropdownMenuContent>
@@ -109,7 +110,7 @@ function Header() {
                         : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
                     }`}
                   >
-                    <CircleUserRound size={25} strokeWidth={2} className="text-blue-600" />
+                     <ProfileIcon />
                   </Link>
           ) : <div>
                 <Link
@@ -133,9 +134,14 @@ function Header() {
 
 
         {/* Quick Access  for Large View*/}
-        <div className="hidden lg:flex lg:gap-2 xl:gap-4  justify-center items-center text-muted-foreground">
+        <div className="hidden lg:flex lg:gap-1 xl:gap-2  justify-center items-center text-muted-foreground">
           {headerData.map((item) => (
-            <Link key={item.title} to={item.url} className="text-sm">
+            <Link 
+              key={item.title} 
+              to={item.url}   
+              className={`lg:px-1 lg:py-1 xl:px-2 xl:py-2 text-sm font-medium rounded-md transition-colors 
+              ${isActive(item.url) ? 'bg-primary/10 text-primary' : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground'}`}>
+              
               {item.title}
             </Link>
           ))}
@@ -152,15 +158,16 @@ function Header() {
               <DropdownMenuContent className="w-48 p-2 z-50" align="end">
                 <DropdownMenuGroup>
                   {moreOptionData.map((item) => (
-                    <div className="my-2">
+                    <DropdownMenuItem  key={item.url} asChild>              
                       <Link
                         key={item.title}
                         to={item.url}
-                        className="text-sm text-muted-foreground my-2"
+                         className={`w-full cursor-pointer p-2 my-2 rounded-md
+                          ${isActive(item.url)? 'bg-primary/10 text-primary': 'text-muted-foreground hover:bg-accent hover:text-accent-foreground'}`}
                       >
                         {item.title}
                       </Link>
-                    </div>
+                    </DropdownMenuItem>
                   ))}
                 </DropdownMenuGroup>
               </DropdownMenuContent>
@@ -197,7 +204,8 @@ function Header() {
                         : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
                     }`}
                   >
-                    <CircleUserRound size={28} strokeWidth={2} className="text-blue-600" />
+                    {/* <CircleUserRound size={28} strokeWidth={2} className="text-blue-600" /> */}
+                    <ProfileIcon />
                   </Link>
           ) : <div>
                 <Link
@@ -222,13 +230,13 @@ function Header() {
         {/* Notification, Search and Login/Profile For Mobile Screen */}
         <div className="flex md:hidden gap-3  justify-center items-center text-muted-foreground">
           <button>
-            <Search className="h-5 w-5" />
+            <Search className="h-6 w-6" />
           </button>
 
           <div className="flex items-center">
             {/* Notifications */}
             <Button variant="ghost" size="icon" className="relative">
-              <Bell />
+              <Bell className="h-6 w-6"/>
               <Badge className="absolute top-1 right-1 h-2 w-2 p-0 bg-red-500" />
             </Button>
           </div>
@@ -237,13 +245,15 @@ function Header() {
             {/* Mobile Menu Button - Now at the end */}
             <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon-lg" className="lg:hidden">
+                <div className="flex items-center">
+                <button  className="lg:hidden ">
                   {mobileOpen ? (
-                    <X className="h-5 w-5" />
+                    <X className="h-6 w-6" />
                   ) : (
-                    <Menu className="h-5 w-5" />
+                    <Menu className="h-6 w-6" />
                   )}
-                </Button>
+                </button>
+                </div>
               </SheetTrigger>
               <SheetContent side="right" className="w-64 px-4">
                 <div className="flex flex-col space-y-2 mt-12">
@@ -252,7 +262,7 @@ function Header() {
                     key="Profile"
                     to="/profile"
                     onClick={() => setMobileOpen(false)}
-                    className={`flex gap-2 px-2 py-2 rounded-md text-sm font-medium transition-colors ${
+                    className={`flex items-center gap-2 px-2 py-2 rounded-md text-sm font-medium transition-colors ${
                       isActive("/profile")
                         ? "bg-primary/10 text-primary"
                         : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
