@@ -1,7 +1,9 @@
 import {  createExtendedQueryKeys } from './query-key-factory'
 
 export const homeQueryKey = createExtendedQueryKeys('home', {
-    banner: () => ['home', 'banner'] as const
+    banner: () => ['home', 'banner'] as const,
+
+    popularTests:()=> ['home', 'popularTests'] as const,
   }
 )
 

@@ -20,3 +20,26 @@ export interface BannerResponse {
   page: number;
   data: BannerData[];
 }
+
+
+// Data for Popular Tests
+export interface ExamCategory {
+  _id: string;
+  slug: string;
+}
+
+export interface Data {
+  _id: string;
+  name: string;
+  slug: string;
+  image: string;
+  examCategory: ExamCategory;
+}
+
+export interface PopularTestResponse {
+  error: boolean;
+  status: boolean;
+  statusCode: number;
+  responseTimestamp: string;
+  data: Data[];
+}

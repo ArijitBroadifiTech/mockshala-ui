@@ -1,4 +1,4 @@
-import type { BannerResponse } from "../model/home-model";
+import type { BannerResponse, PopularTestResponse } from "../model/home-model";
 import axios, { type AxiosResponse } from 'axios'
 import { apiUrl, BASE_URL } from "../url";
 
@@ -8,5 +8,12 @@ export const homeAPI = {
 
         return response.data
        
+    },
+
+    getPopularTestData:  async (): Promise<PopularTestResponse> =>{
+        const response: AxiosResponse<PopularTestResponse> = await axios.get(`${BASE_URL}${apiUrl.popularTests}`)
+        
+        return response.data
+    
     }
 }
