@@ -43,15 +43,11 @@ export default function Hero() {
 
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
-  const [count, setCount] = React.useState(0);
 
-  console.log(count);
-  
   React.useEffect(() => {
     if (!api) return;
 
     const updateDots = () => {
-      setCount(api.scrollSnapList().length);
       setCurrent(api.selectedScrollSnap());
     };
 
@@ -69,6 +65,14 @@ export default function Hero() {
     };
   }, [api]);
 
+  const handleMouseEnter = () => {
+    autoplay.current.stop();
+  };
+
+  const handleMouseLeave = () => {
+    autoplay.current.reset();
+  };
+
   return (
     <div>
       {/* for Mobile Screen */}
@@ -78,8 +82,8 @@ export default function Hero() {
           plugins={[autoplay.current]}
           opts={{ loop: true }}
           className="w-full relative"
-          // onMouseEnter={() => autoplay.current.stop()}
-          // onMouseLeave={() => autoplay.current.reset()}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
         >
           <CarouselContent>
             {bannerData?.data.map((item) => (
@@ -128,8 +132,8 @@ export default function Hero() {
           plugins={[autoplay.current]}
           opts={{ loop: true }}
           className="w-full relative"
-          // onMouseEnter={() => autoplay.current.stop()}
-          // onMouseLeave={() => autoplay.current.reset()}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
         >
           <CarouselContent>
             {bannerData?.data.map((item) => (
@@ -152,20 +156,20 @@ export default function Hero() {
         </Carousel>
 
         {/* DOTS */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-50 flex gap-2 pointer-events-auto">
-  {Array.from({ length: bannerData?.data.length ?? 0 }).map((_, index) => (
-    <button
-      key={index}
-      onClick={() => api?.scrollTo(index)}
-      className={cn(
-        "h-2.5 w-2.5 rounded-full transition-all z-50",
-        current === index
-          ? "bg-white w-6"
-          : "bg-white/50 hover:bg-white",
-      )}
-    />
-  ))}
-</div>
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-50 flex gap-2 pointer-events-auto">
+          {Array.from({ length: bannerData?.data.length ?? 0 }).map((_, index) => (
+            <button
+              key={index}
+              onClick={() => api?.scrollTo(index)}
+              className={cn(
+                "h-2.5 w-2.5 rounded-full transition-all z-50",
+                current === index
+                  ? "bg-white w-6"
+                  : "bg-white/50 hover:bg-white",
+              )}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
