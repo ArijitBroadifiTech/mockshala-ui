@@ -23,9 +23,9 @@ function PopularExam() {
   const [api, setApi] = React.useState<CarouselApi | null>(null)
 
   return (
-    <div className=" w-full px-4 py-2 max-w-7xl mx-auto md:mt-20 space-y-4">
+    <div className=" w-full px-4 py-2 max-w-7xl mx-auto md:mt-20">
       {/* HEADER */}
-        <div className='md:text-start mb-8 space-y-2'>
+        <div className='md:text-start space-y-2'>
             <h3 className='py-1 text-2xl lg:text-4xl font-bold bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent'>Popular Tests</h3>
             <p className='text-gray-600 dark:text-gray-300 max-w-2xl'>
                 Choose your exam and start preparing today
@@ -35,43 +35,44 @@ function PopularExam() {
     
 
       {/* CAROUSEL WRAPPER */}
-      <div className="relative group">
+      <div className=" group space-y-3">
+        <div className='justify-end flex gap-2 px-4'>
         {/* LEFT BUTTON */}
-        <button
-          onClick={() => api?.scrollPrev()}
-          className="
-            absolute -left-3 top-1/2 -translate-y-1/2 z-20
-            h-9 w-9 rounded-full
-            bg-white/70 backdrop-blur-md
-            shadow-lg border border-white/40
-            flex items-center justify-center
-            text-gray-700
-            transition-all duration-300
-            hover:bg-blue-600 hover:text-white
-            hover:scale-110
-          "
-        >
-          <ChevronLeft />
-        </button>
+            <button
+            onClick={() => api?.scrollPrev()}
+            className="
+                 z-20
+                h-9 w-9 rounded-full
+                bg-white/70 backdrop-blur-md
+                shadow-lg border border-white/40
+                flex items-center justify-center
+                text-gray-700
+                transition-all duration-300
+                hover:bg-blue-600 hover:text-white
+                hover:scale-110
+            "
+            >
+            <ChevronLeft />
+            </button>
 
-        {/* RIGHT BUTTON */}
-        <button
-          onClick={() => api?.scrollNext()}
-          className="
-            absolute -right-3 top-1/2 -translate-y-1/2 z-20
-            h-9 w-9 rounded-full
-            bg-white/70 backdrop-blur-md
-            shadow-lg border border-white/40
-            flex items-center justify-center
-            text-gray-700
-            transition-all duration-300
-            hover:bg-blue-600 hover:text-white
-            hover:scale-110
-          "
-        >
-          <ChevronRight />
-        </button>
-
+            {/* RIGHT BUTTON */}
+            <button
+            onClick={() => api?.scrollNext()}
+            className="
+                 z-20
+                h-9 w-9 rounded-full
+                bg-white/70 backdrop-blur-md
+                shadow-lg border border-white/40
+                flex items-center justify-center
+                text-gray-700
+                transition-all duration-300
+                hover:bg-blue-600 hover:text-white
+                hover:scale-110
+            "
+            >
+            <ChevronRight />
+            </button>
+        </div>
         {/* CAROUSEL */}
         <Carousel
           setApi={setApi}
@@ -81,7 +82,7 @@ function PopularExam() {
             slidesToScroll: 1,
             containScroll: "trimSnaps",
           }}
-          className="w-full px-5"
+          className="w-full "
         >
           <CarouselContent className='mx-auto'>
             {popularTestData?.data.map((item) => (

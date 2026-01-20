@@ -34,8 +34,8 @@ function Header() {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <header className='sticky top-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm shadow-md '>
-    <div className="w-full  px-4 py-2 max-w-7xl mx-auto">
+    <header className='sticky top-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm shadow-md  flex justify-center'>
+    <div className="w-full px-4 py-2 max-w-7xl ">
       <div className="flex gap-4 justify-between w-full  ">
         {/* Title for all view */}
         <div className="flex justify-center items-center">

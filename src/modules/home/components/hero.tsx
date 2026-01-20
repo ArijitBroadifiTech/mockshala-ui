@@ -76,7 +76,7 @@ export default function Hero() {
   return (
     <div>
       {/* for Mobile Screen */}
-      <div className="relative w-full flex md:hidden overflow-visible">
+      <div className="relative w-full flex md:hidden overflow-visible ">
         <Carousel
           setApi={setApi}
           plugins={[autoplay.current]}
