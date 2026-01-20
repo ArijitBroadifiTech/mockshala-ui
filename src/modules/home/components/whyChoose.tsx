@@ -71,14 +71,14 @@ function WhyChoose() {
     hidden: {
       opacity: 0,
       y: 40,
-      scale: 0.95,
+      scale: 0.7,
     },
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
       transition: {
-        duration: 0.6,
+        duration: 0.9,
         ease: [0.16, 1, 0.3, 1], 
       },
     },
@@ -92,7 +92,7 @@ function WhyChoose() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="text-start mb-12 space-y-2"
+        className="md:text-start mb-12 space-y-2"
       >
         <h3 className="text-2xl lg:text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
           Why Choose MockShala?
@@ -119,10 +119,12 @@ function WhyChoose() {
         >
         <Card className="h-full group bg-white/80 backdrop-blur-md border border-gray-200 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
             <CardContent className="p-6 h-full flex flex-col">
-            <div
-                className={`w-12 h-12 rounded-xl ${feature.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}
-            >
-                <feature.icon className="h-6 w-6" />
+            <div className='w-full flex justify-center items-center'>
+              <div
+                  className={` w-12 h-12 rounded-xl ${feature.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}
+              >
+                  <feature.icon className="h-6 w-6" />
+              </div>
             </div>
 
             <h4 className="text-xl font-semibold mb-3 group-hover:text-blue-600 transition-colors">

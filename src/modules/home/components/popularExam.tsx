@@ -23,9 +23,9 @@ function PopularExam() {
   const [api, setApi] = React.useState<CarouselApi | null>(null)
 
   return (
-    <div className="w-full px-4 py-2 max-w-7xl mx-auto mt-20 space-y-4">
+    <div className=" w-full px-4 py-2 max-w-7xl mx-auto md:mt-20 space-y-4">
       {/* HEADER */}
-        <div className='text-start mb-8 space-y-2'>
+        <div className='md:text-start mb-8 space-y-2'>
             <h3 className='py-1 text-2xl lg:text-4xl font-bold bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent'>Popular Tests</h3>
             <p className='text-gray-600 dark:text-gray-300 max-w-2xl'>
                 Choose your exam and start preparing today
@@ -41,7 +41,7 @@ function PopularExam() {
           onClick={() => api?.scrollPrev()}
           className="
             absolute -left-3 top-1/2 -translate-y-1/2 z-20
-            h-11 w-11 rounded-full
+            h-9 w-9 rounded-full
             bg-white/70 backdrop-blur-md
             shadow-lg border border-white/40
             flex items-center justify-center
@@ -59,7 +59,7 @@ function PopularExam() {
           onClick={() => api?.scrollNext()}
           className="
             absolute -right-3 top-1/2 -translate-y-1/2 z-20
-            h-11 w-11 rounded-full
+            h-9 w-9 rounded-full
             bg-white/70 backdrop-blur-md
             shadow-lg border border-white/40
             flex items-center justify-center
@@ -81,13 +81,13 @@ function PopularExam() {
             slidesToScroll: 1,
             containScroll: "trimSnaps",
           }}
-          className="w-full px-10"
+          className="w-full px-5"
         >
           <CarouselContent className='mx-auto'>
             {popularTestData?.data.map((item) => (
               <CarouselItem
                 key={item._id}
-                className="basis-1/1 sm:basis-1/2 lg:basis-1/4 p-4"
+                className="basis-1/1 sm:basis-1/2 lg:basis-1/4 xl:basis-1/5 p-4"
               >
                 {/* GLASS CARD */}
                 <div
