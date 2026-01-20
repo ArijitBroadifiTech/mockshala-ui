@@ -36,13 +36,13 @@ function PopularExam() {
 
       {/* CAROUSEL WRAPPER */}
       <div className=" group space-y-3">
-        <div className='justify-end flex gap-2 px-4'>
+        <div className='justify-end flex gap-2 px-4 mt-4 sm:mt-0'>
         {/* LEFT BUTTON */}
             <button
             onClick={() => api?.scrollPrev()}
             className="
                  z-20
-                h-9 w-9 rounded-full
+                h-8 sm:h-9 w-8 sm:w-9 rounded-full
                 bg-white/70 backdrop-blur-md
                 shadow-lg border border-white/40
                 flex items-center justify-center
@@ -60,7 +60,7 @@ function PopularExam() {
             onClick={() => api?.scrollNext()}
             className="
                  z-20
-                h-9 w-9 rounded-full
+                h-8 sm:h-9 w-8 sm:w-9 rounded-full
                 bg-white/70 backdrop-blur-md
                 shadow-lg border border-white/40
                 flex items-center justify-center
