@@ -22,6 +22,8 @@ import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import { mockShalaLogo } from "@/assets";
 import ProfileIcon from "../ProfileIcon";
 import { createHeaderData } from "../data/headerData";
+import LanguageToggle from "../toggleSwitch";
+import LangSwitch from "../langSwitch";
 
 // import LangSwitch from "../langSwitch";
 // import LanguageToggle from "../toggleSwitch";
@@ -197,13 +199,13 @@ function Header() {
             </Button>
           </div>
 
-          {/* <div className="hidden xl:flex">
+          <div className="hidden xl:flex">
                 <LanguageToggle/>
           </div>
           
           <div className="flex xl:hidden">
                   <LangSwitch/>
-          </div> */}
+          </div>
           
             
         
