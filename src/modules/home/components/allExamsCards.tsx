@@ -11,12 +11,13 @@ interface PropsType{
 }
 export function AllExamsCards({slug}:PropsType) 
 {
-  console.log(slug);
+  // console.log("current slug is:",slug);
   
 
   const {data: allExamData, isLoading, error} = useQuery({
-        queryKey:homeQueryKey.allTestSeries(),
-        queryFn: ()=> homeAPI.getAllExamByCategory("utta-prad-exam")
+        queryKey:homeQueryKey.allTestSeries(slug),
+        queryFn: ()=> homeAPI.getAllExamByCategory(slug),
+        enabled: !!slug
     })
 
     // console.log(allExamData);
@@ -56,7 +57,7 @@ export function AllExamsCards({slug}:PropsType)
               className='flex flex-col border border-gray-200 p-3 gap-3
               rounded-lg group shadow-xs hover:shadow-sm transition-all duration-300 hover:scale-[1.02]'
             >
-              <div className="py-2 flex justify-items-start">
+              <div className="py-2 ">
                 <div>
                 <ImageWithFallback
                   src={IMAGE_BASE_URL + series.image}
