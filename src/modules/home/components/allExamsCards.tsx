@@ -1,36 +1,44 @@
 import { homeQueryKey } from "@/api";
 import { homeAPI } from "@/api/services/getHomeData";
 import { IMAGE_BASE_URL } from "@/api/url";
-// import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ImageWithFallback } from "@/modules/fallback/ImageWithFallback";
 import { useQuery } from "@tanstack/react-query";
-import {  BookOpen, Clock, Languages, MoveRight, Target } from "lucide-react";
+import { BookOpen, Clock, Languages, MoveRight, Target } from "lucide-react";
 
 
-export function AllExamsCards() 
+interface PropsType{
+  slug: string
+}
+export function AllExamsCards({slug}:PropsType) 
 {
+  console.log(slug);
+  
+
   const {data: allExamData, isLoading, error} = useQuery({
         queryKey:homeQueryKey.allTestSeries(),
         queryFn: ()=> homeAPI.getAllExamByCategory("utta-prad-exam")
     })
 
-    console.log(allExamData);
+    // console.log(allExamData);
 
     const dataCount = allExamData?.totalCount || 0;
-    const gridCount = 8;
+    const displayLimit = 7; // Show only 7 exam cards
+    const displayData = allExamData?.data?.slice(0, displayLimit) || [];
+    const remainingCount = dataCount - displayLimit;
 
     const formatName = (name?: string): string => {
-    if (!name) return ''; // handle undefined / null / empty
-    return String(name) // coerce non-strings safely
-      .trim() // remove leading/trailing spaces
-      .split(/\s+/) // split on one or more whitespace chars
-      .filter(Boolean) // remove any empty tokens
+    if (!name) return ''; 
+    return String(name)
+      .trim()
+      .split(/\s+/)
+      .filter(Boolean)
       .map(
         token => token.charAt(0).toUpperCase() + token.slice(1).toLowerCase()
       )
       .join(' ');
   };
 
+  
   return (
    <section className='py-8 md:py-16 bg-gray-50 dark:bg-gray-900'>
       <div className='container mx-auto px-4'>
@@ -39,13 +47,14 @@ export function AllExamsCards()
 
        
        
-        {/* Test Series Grid */}
-        <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 md:gap-6 xl:gap-10 mb-12'>
-          {allExamData?.data?.map(series => (
+        {/* Test Series Grid - 2 rows with 4 columns */}
+        <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-6 xl:gap-10 mb-12'>
+          {/* Display 7 exam cards */}
+          {displayData.map(series => (
             <div
               key={series._id}
               className='flex flex-col border border-gray-200 p-3 gap-3
-              rounded-lg group shadow-xs hover:shadow-sm transition-all duration-300 hover:scale-[1.02] '
+              rounded-lg group shadow-xs hover:shadow-sm transition-all duration-300 hover:scale-[1.02]'
             >
               <div className="py-2 flex justify-items-start">
                 <div>
@@ -93,28 +102,21 @@ export function AllExamsCards()
                       ([key, value]) => (
                         <div
                           key={key}
-                          className='flex items-center gap-1 text-xs text-gray-600 dark:text-gray-300 '
+                          className='flex items-center gap-1 text-xs text-gray-600 dark:text-gray-300'
                         >
                           <Target className='h-3 w-3 mr-2 text-green-600' />
-                          <span className='font-semibold '>{value}</span>
-                          <span > {key.replace(/_/g, ' ')}</span>
+                          <span className='font-semibold'>{value}</span>
+                          <span> {key.replace(/_/g, ' ')}</span>
                         </div>
                       )
                     )}
                   </div>
                 </div>
 
-                {/* Pricing */}
-
                 {/* CTA */}
                 <div>
                   <button
-                    // to={'/dashboard/$examCategory/$testSlug'}
-                    // params={{
-                    //   examCategory: series.examCategory.slug,
-                    //   testSlug: series.slug,
-                    // }}
-                    className='w-full flex justify-center items-center border-2 border-blue-600 text-blue-600 hover:bg-blue-700  hover:text-white px-4 py-1.5 font-semibold rounded-md'
+                    className='w-full flex justify-center items-center border-2 border-blue-600 text-blue-600 hover:bg-blue-700 hover:text-white px-4 py-1.5 font-semibold rounded-md'
                   >
                     Start Test Series
                   </button>
@@ -123,21 +125,28 @@ export function AllExamsCards()
             </div>
           ))}
 
-          <div
-            className='group hover:shadow-lg transition-all duration-300 hover:scale-[1.02] text-center 
-          flex justify-center items-center bg-gradient-to-br from-blue-100 via-violet-100 to-indigo-100'
-          >
-            <span className='text-xl text-blue-600 font-bold'>
-              {dataCount - gridCount} More Tests
-            </span>
+          {/* View More Card - 8th position (last card in 2nd row) */}
+          {remainingCount > 0 && (
             <div
-              className='bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-2 
-                flex gap-2 justify-center items-center rounded-md text-white text-lg font-semibold border border-gray-100'
+              className='group hover:shadow-lg transition-all duration-300 hover:scale-[1.02] 
+              flex flex-col justify-center items-center gap-4 p-6
+              bg-gradient-to-br from-blue-100 via-violet-100 to-indigo-100 rounded-lg
+              border border-gray-200'
             >
-              <button>View All</button>
-              <MoveRight />
+              <span className='text-xl md:text-2xl text-blue-600 font-bold text-center'>
+                +{remainingCount} More Tests
+              </span>
+              <button
+                className='bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-2.5 
+                  flex gap-2 justify-center items-center rounded-md text-white text-base font-semibold 
+                  hover:from-blue-700 hover:to-purple-700 transition-all duration-300
+                  shadow-md hover:shadow-lg'
+              >
+                <span>View All</span>
+                <MoveRight className='w-5 h-5' />
+              </button>
             </div>
-          </div>
+          )}
         </div>
 
     

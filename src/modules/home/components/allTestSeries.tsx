@@ -4,26 +4,35 @@ import { homeAPI } from '@/api/services/getHomeData'
 import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from '@/components/ui/carousel'
 import { useQuery } from '@tanstack/react-query'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { AllExamsCards } from './allExamsCards'
 
 
 function AllTestSeries() {
-    const {data} = useQuery({
+      const [active, setIsActive] = useState("")
+
+    const {data, isLoading} = useQuery({
         queryKey: queryKeys.home.paidTestCategories(),
         queryFn: homeAPI.getDashboardPaidCategories,
         ...QUERY_CONFIG.static,
     })
 
-    // console.log(data?.data.featureCategories);
+    const fetchFirstData = data?.data.featureCategories[0].slug;
+
+    // console.log(data?.data.featureCategories[0]);
 
     const {t} = useTranslation()
     
     const [api, setApi] = useState<CarouselApi | null>(null);
 
 
-    const handleClick = ()=>{
+    useEffect(()=>{
+        setIsActive(fetchFirstData ?? "")
+    },[])
+
+    const handleClick = (slug: string)=>{
+        setIsActive(()=>slug)
         console.log("Clicked");     
     }
 
@@ -32,7 +41,7 @@ function AllTestSeries() {
 
         <div className='flex flex-col lg:flex-row gap-6 lg:gap-12 xl:gap-40 lg:justify-between lg:items-start'>
         {/* Heading */}
-        <div className='text-center md:text-start space-y-1 lg:flex-shrink-0'>
+        <div className='text-center md:text-start space-y-1 lg:shrink-0'>
             <h3 className="py-1 text-xl sm:text-2xl xl:text-4xl font-bold bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 {t("allTestSeries.title")}
             </h3>
@@ -42,7 +51,9 @@ function AllTestSeries() {
             </p>                   
         </div>
 
-        {/* Categories List */}
+        
+
+      { isLoading ? <div>Loading</div> :
         <div className='w-full lg:flex-1 overflow-hidden'>
         {/* CAROUSEL WRAPPER */}
             <div className="group space-y-2 xl:space-y-2">
@@ -101,7 +112,7 @@ function AllTestSeries() {
                         key={item._id}
                         className="pl-2 basis-auto"
                     >
-                    <button onClick={handleClick}>
+                    <button onClick={()=>handleClick(item.slug)}>
                         <div className='rounded-lg sm:rounded-xl px-3 py-1.5 sm:px-4 sm:py-2 text-center shadow-xs
                             bg-gray-100 font-medium text-gray-700 whitespace-nowrap text-xs sm:text-sm'>
                             <p>{item.categoryName}</p>                                 
@@ -113,10 +124,14 @@ function AllTestSeries() {
                 </Carousel>
             </div>
         </div>
+        }
+        
         </div>
 
         {/* Cards */}
-        <AllExamsCards />
+        { isLoading  ? <div>Loading</div> :
+        <AllExamsCards slug={active}/>
+        }
      </div>
   )
 }
