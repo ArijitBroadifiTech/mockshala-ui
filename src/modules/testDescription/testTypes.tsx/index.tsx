@@ -17,30 +17,28 @@ interface StoreDataProps {
   clearTestData: () => void;
 }
 
-function GroupByDifficulty() {
+function GroupByTestType() {
   const { testData }: StoreDataProps = useTestDescriptionStore();
 
   //Fetch what are the difficulties have in this test
-  const difficulties = [
-    ...new Set(testData?.tests.map((test) => test.difficultyLevel)),
-  ];
+    const testTypes = [...new Set(testData?.tests.map(test => test.testType))];
 
-  //Just format the difficulties name
-  const formatDifficulties = difficulties.map((test) => {
-    return formattingWord(test);
+  const formatTypes = testTypes.map(type => {
+    return formattingWord(type);
   });
 
-  // console.log(typeof formatDifficulties);
+
+  // console.log(typeof formatTypes);
 
   return (
     <div>
       <Card>
         <CardContent className="text-muted-foreground text-sm">
-          <TabsByType formatCategory={formatDifficulties} formatType="difficulty"/>
+          <TabsByType formatCategory={formatTypes} formatType="testType"/>
         </CardContent>
       </Card>
     </div>
   );
 }
 
-export default GroupByDifficulty;
+export default GroupByTestType;

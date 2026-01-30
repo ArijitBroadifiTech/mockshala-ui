@@ -38,11 +38,11 @@ export function DifficultyTable({ filterData }: FilterDataProps) {
     return `${hours} hr ${remainingMinutes} min`;
   };
 
-  const difficultyTextColor: Record<string, string> = {
-    beginner: "text-green-600",
-    intermediate: "text-orange-500",
-    pro: "text-red-600",
-  };
+  // const difficultyTextColor: Record<string, string> = {
+  //   beginner: "text-green-600",
+  //   intermediate: "text-orange-500",
+  //   pro: "text-red-600",
+  // };
 
   return (
     <div>
@@ -50,8 +50,8 @@ export function DifficultyTable({ filterData }: FilterDataProps) {
         {/* <TableCaption>A list of your recent invoices.</TableCaption> */}
         <TableHeader>
           <TableRow>
-            <TableHead>Difficulty</TableHead>
-            <TableHead className="text-center">Type</TableHead>
+            {/* <TableHead>Difficulty</TableHead> */}
+            <TableHead className="text-center">Test Type</TableHead>
             <TableHead className="pl-2">Test Name</TableHead>
             <TableHead className="text-center">Questions</TableHead>
             <TableHead className="text-center">Duration</TableHead>
@@ -62,18 +62,18 @@ export function DifficultyTable({ filterData }: FilterDataProps) {
         <TableBody>
           {filterData?.map((item) => (
             <TableRow key={item._id}>
-              <TableCell
+              {/* <TableCell
                 className={
                   difficultyTextColor[item.difficultyLevel.toLowerCase()] ??
                   "text-gray-600"
                 }
               >
                 {formattingWord(item.difficultyLevel)}
-              </TableCell>
+              </TableCell> */}
 
               <TableCell className=" flex justify-center items-center">
                 <Badge variant={"secondary"}>
-                  {formattingWord(item.examType)}
+                  {formattingWord(item.testType)}
                 </Badge>
               </TableCell>
 

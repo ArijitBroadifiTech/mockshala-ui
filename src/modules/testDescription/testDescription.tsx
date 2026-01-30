@@ -1,18 +1,19 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import AllTests from "./allTests.tsx";
 import GroupByDifficulty from "./dificultyLevels.tsx/index.tsx";
+import GroupByTestType from "./testTypes.tsx/index.tsx";
+import HtmlSetter from "../home/components/htmlSetter.tsx";
+import { useTestDescriptionStore } from "@/stores/testStore.ts";
+import type { TestDetailsData } from "@/api/model/test-model.ts";
 
-
-
+interface StoreDataProps {
+  testData: TestDetailsData | null;
+  setTestData: (data: TestDetailsData) => void;
+  clearTestData: () => void;
+}
 function TestDescription() {
-  
+  const { testData }: StoreDataProps = useTestDescriptionStore();
   // console.log(testData?.name);
 
   return (
@@ -42,36 +43,20 @@ function TestDescription() {
             </Card>
           </TabsContent>
 
+          {/* Group by difficulty */}
           <TabsContent value="Group by difficulty level">
             <GroupByDifficulty />
           </TabsContent>
 
+          {/* Group by test type */}
           <TabsContent value="Group by test type">
-            <Card>
-              <CardHeader>
-                <CardTitle>Reports</CardTitle>
-                <CardDescription>
-                  Generate and download your detailed reports. Export data in
-                  multiple formats for analysis.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="text-muted-foreground text-sm">
-                You have 5 reports ready and available to export.
-              </CardContent>
-            </Card>
+            <GroupByTestType />
           </TabsContent>
 
           <TabsContent value="Test description">
             <Card>
-              <CardHeader>
-                <CardTitle>Settings</CardTitle>
-                <CardDescription>
-                  Manage your account preferences and options. Customize your
-                  experience to fit your needs.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="text-muted-foreground text-sm">
-                Configure notifications, security, and themes.
+              <CardContent>
+                <HtmlSetter html={testData?.description ?? ""} />
               </CardContent>
             </Card>
           </TabsContent>

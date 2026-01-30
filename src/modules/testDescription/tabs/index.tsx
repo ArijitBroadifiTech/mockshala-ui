@@ -5,9 +5,11 @@ import { useState } from "react";
 import { useTestDescriptionStore } from "@/stores/testStore";
 import type { TestDetailsData } from "@/api/model/test-model";
 import { formattingWord } from "@/utils/formatting/formattingWord";
+import { TestTypeTable } from "../testType/testTypeTable";
 
 interface DifficultyProps {
-  formatDifficulties: string[];
+  formatCategory: string[];
+  formatType: string
 }
 
 interface StoreDataProps {
@@ -17,12 +19,12 @@ interface StoreDataProps {
 }
 
 
-export function TabsByType({ formatDifficulties }: DifficultyProps) {
+export function TabsByType({ formatCategory,formatType}: DifficultyProps) {
   //fetch all test data
   const { testData }: StoreDataProps = useTestDescriptionStore();
 
 
-  const [activeTab, setActiveTab] = useState(formatDifficulties[0]);
+  const [activeTab, setActiveTab] = useState(formatCategory[0]);
 
   const handleTabSwitch = (currentTab: string)=> {
     console.log(currentTab);
@@ -30,14 +32,40 @@ export function TabsByType({ formatDifficulties }: DifficultyProps) {
     setActiveTab(()=> (currentTab))
   }
 
-   const filterData = testData?.tests.filter(test => {
-    const matchDifficulty = activeTab
-      ? formattingWord(test.difficultyLevel) === activeTab
-      : true;
+  function getFilterData(formatType: string){
+    if(formatType ==='difficulty')
+    {
+        const filterDifficultyData = testData?.tests.filter(test => {
+          const matchDifficulty = activeTab
+            ? formattingWord(test.difficultyLevel) === activeTab
+            : true;
 
-    return matchDifficulty ;
-  });
+          return matchDifficulty ;
+        });
 
+        return filterDifficultyData
+    }
+    else if(formatType==='testType'){
+
+      const filterTestTypeData = testData?.tests.filter(test => {
+        const matchType = activeTab
+          ? formattingWord(test.testType) === activeTab
+          : true;
+
+        return matchType ;
+      });
+      
+      return filterTestTypeData
+    }
+  }
+  
+   
+  const finalFilterData = getFilterData(formatType)
+
+    
+
+  console.log("you are switched to ", formatType);
+  
   // console.log(filterData);
   
   return (
@@ -48,21 +76,26 @@ export function TabsByType({ formatDifficulties }: DifficultyProps) {
       className="w-[400px]"
     >
       <TabsList>
-        {formatDifficulties.map((item: string) => (
+        {formatCategory.map((item: string) => (
           <TabsTrigger value={item} key={item}>
             {item}
           </TabsTrigger>
         ))}
       </TabsList>
 
-      {formatDifficulties.map((item: string) => (
+      {formatCategory.map((item: string) => (
         <TabsContent key={item} value={item}>
           <Card>
             <CardHeader>
               <CardTitle className="text-[#002966]">{item} Level</CardTitle>
             </CardHeader>
             <CardContent className="text-muted-foreground text-sm">
-              <DifficultyTable filterData={filterData ?? []}/>
+              {
+                (formatType ==='difficulty')? <DifficultyTable filterData={finalFilterData ?? []}/> :
+                  <TestTypeTable filterData={finalFilterData ?? []}/>
+    
+              }
+              
             </CardContent>
           </Card>
         </TabsContent>
