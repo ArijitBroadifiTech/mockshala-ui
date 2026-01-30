@@ -53,6 +53,7 @@ body {
   --color-sidebar-ring: var(--sidebar-ring);
   --color-button-blue: var(--button-blue);
   --color-button-sky: var(--button-sky);
+  --color-table-text-primary:var(--table-text-primary)
 
   /* --max-width-container: 1280px; */
 }
@@ -95,7 +96,8 @@ body {
   /* --color-primary: #1F3E72;
   --color-secondary: rgba(255, 255, 255, 0.78); */
   --button-blue: oklch(54.6% 0.245 262.881);
-  --button-sky: oklch(58.8% 0.158 241.966)
+  --button-sky: oklch(58.8% 0.158 241.966);
+  --table-text-primary : oklch(44.6% 0.03 256.802);
 }
 
 .dark {
@@ -131,7 +133,8 @@ body {
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
   --button-blue: oklch(54.6% 0.245 262.881);
-  --button-sky: oklch(58.8% 0.158 241.966)
+  --button-sky: oklch(58.8% 0.158 241.966);
+  --table-text-primary : oklch(44.6% 0.03 256.802);
 }
 
 @layer base {

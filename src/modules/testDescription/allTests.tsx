@@ -12,6 +12,7 @@ import {
 import { useTestDescriptionStore } from '@/stores/testStore';
 import type { TestDetailsData } from '@/api/model/test-model';
 import ButtonCustom from '@/components/buttonCustom';
+import { Badge } from '@/components/ui/badge';
 
 interface StoreDataProps{
   testData: TestDetailsData | null;
@@ -67,9 +68,11 @@ function AllTests() {
                         <TableCell >
                           {formattingWord(item.difficultyLevel)}
                         </TableCell>
-                        <TableCell> {formattingWord(item.examType)}</TableCell>
+                        <TableCell> 
+                          <Badge variant={'secondary'}>{formattingWord(item.examType)}</Badge>
+                          </TableCell>
                         <TableCell className='font-medium '>
-                          <div className='max-w-xs w-full'>
+                          <div className="max-w-xs w-full truncate text-table-text-primary">
                               {formatName(item.name)}
                           </div>
                           </TableCell>
