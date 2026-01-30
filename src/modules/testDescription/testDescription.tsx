@@ -28,7 +28,7 @@ function TestDescription() {
           <TabsContent value="All Tests">
             <Card>
               <CardHeader>
-                <CardTitle>All Tests</CardTitle>
+                <CardTitle>Test List</CardTitle>
               </CardHeader>
               <CardContent className="text-muted-foreground text-sm">
                   <AllTests />

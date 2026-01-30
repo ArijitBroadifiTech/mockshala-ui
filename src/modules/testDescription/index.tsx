@@ -7,39 +7,63 @@ import { useParams } from "@tanstack/react-router";
 import { BookOpen, ChevronRight, FileText } from "lucide-react";
 // import { ImageWithFallback } from "../fallback/ImageWithFallback";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import TestDescription from "./testDescription";
+import { useEffect } from "react";
+import ButtonCustom from "@/components/buttonCustom";
+import { useTestDescriptionStore } from "@/stores/testStore";
+import type { TestDetailsData } from "@/api/model/test-model";
 
+interface StoreDataProps{
+  testData: TestDetailsData | null;
+    setTestData: (data: TestDetailsData) => void;
+    clearTestData: () => void;
+}
 function DescriptionModule() {
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  });
+
   const { examCategory, testSlug } = useParams({
     from: "/$lang/exams/$examCategory/$testSlug/",
   });
 
+  //get the Setter function from zustand
+  const {setTestData}: StoreDataProps = useTestDescriptionStore()
+
   const { data } = useQuery({
     queryKey: testDescriptionKey.testDetails(examCategory, testSlug),
     queryFn: () => testAPI.getTestDetails(testSlug),
+    
   });
 
-  const testData = data?.data;
+  // console.log("data is",testData);
+  
+  useEffect(() => {
+    if (data?.data) {
+      setTestData(data.data);
+    }
+  }, [data, setTestData]);
 
-   console.log(testData);
+  const fetchTestData = data?.data;
 
-  const totalTests = testData?.tests.length;
+  // console.log(fetchTestData);
 
-  const totalQuestions = testData?.tests.reduce(
+  const totalTests = fetchTestData?.tests.length;
+
+  const totalQuestions = fetchTestData?.tests.reduce(
     (sum, test) => sum + test.totalQuestions,
     0,
   );
 
   // validity
   let time = 0;
-  if (testData) {
-    time = testData?.durationTime / 30;
+  if (fetchTestData) {
+    time = fetchTestData?.durationTime / 30;
   }
 
   const validity = Math.floor(time);
 
-  console.log(IMAGE_BASE_URL + testData?.image);
+  // console.log(IMAGE_BASE_URL + fetchTestData?.image);
 
   return (
     <div className="w-full bg-linear-to-r from-gray-100 via-blue-100/70 to-indigo-100 h-full min-h-screen">
@@ -57,19 +81,25 @@ function DescriptionModule() {
           </div>
 
           {/* Header section */}
-          <div className="bg-inner rounded-2xl px-6 py-8 mb-6">
+          <div className="  rounded-2xl
+            bg-white/10
+            backdrop-blur-2xl
+            border border-white/60
+            ring-1 ring-white/30
+            shadow-lg px-6 py-8 mb-6">
             {/* Title Section */}
-            <div>
+            <div  
+            >
               {/* Heading */}
               <div className="pb-4">
-                <h1 className="text-4xl text-white max-w-3xl font-medium">
-                  {testData?.name}
+                <h1 className="text-4xl text-[#002966] text-shadow-xs max-w-3xl font-medium">
+                  {fetchTestData?.name}
                 </h1>
               </div>
 
               {/* Small description */}
               <div className="pb-8">
-                <p className="text-sm text-[#e6effc] max-w-3xl">
+                <p className="text-sm text-[#1e4064]  max-w-3xl">
                   CUET UG 2026 is a national-level entrance exam conducted by
                   the National Testing Agency (NTA) for admission to
                   undergraduate programs in 200+ top Indian universities such as
@@ -80,7 +110,7 @@ function DescriptionModule() {
               </div>
 
               {/* Features */}
-              <div className="flex gap-10 items-center text-white pb-6">
+              <div className="flex gap-10 items-center text-[#002966] pb-6">
                 <div className="flex items-center gap-2 text-sm">
                   <img
                     src={testCount}
@@ -116,32 +146,32 @@ function DescriptionModule() {
             </div>
           </div>
 
-          <div className="grid grid-cols-12 gap-8">
+          <div className="grid grid-cols-12 gap-7">
             {/* Description Section */}
             <div className="col-span-9">
               <TestDescription />
             </div>
 
             {/* Buy Now section */}
-            <div className="col-span-3 -mt-64 mr-8">
-              <div className=" shadow-lg bg-white rounded-2xl p-2 space-y-5">
+            <div className="col-span-3 -mt-64 mr-5 z-10">
+              <div className=" shadow-lg bg-white/80 rounded-2xl p-2 space-y-5">
                 {/* Image div */}
                 <div className="w-full rounded-t-2xl h-56 p-2 relative overflow-hidden">
                   <img
-                    src={IMAGE_BASE_URL + testData?.image}
-                    alt={testData?.name || "Test series image"}
+                    src={IMAGE_BASE_URL + fetchTestData?.image}
+                    alt={fetchTestData?.name || "Test series image"}
                     className="object-contain rounded-t-lg h-full w-full relative z-2"
                   />
 
                   <img
-                    src={IMAGE_BASE_URL + testData?.image}
-                    alt={testData?.name || "Test series image"}
+                    src={IMAGE_BASE_URL + fetchTestData?.image}
+                    alt={fetchTestData?.name || "Test series image"}
                     className="object-cover absolute inset-0 h-full w-full z-1 blur-[3px]"
                   />
 
                   {/* <ImageWithFallback
-                    src={IMAGE_BASE_URL + testData?.image}
-                    alt={testData?.name || "Test series image"}
+                    src={IMAGE_BASE_URL + fetchTestData?.image}
+                    alt={fetchTestData?.name || "Test series image"}
                     className=" aspect-auto object-fill rounded-t-lg"
                   /> */}
                 </div>
@@ -158,7 +188,7 @@ function DescriptionModule() {
 
                   {/* discount price */}
                   <div className="flex flex-col items-center mb-4">
-                    <p className="text-3xl font-bold text-button-bg">₹700</p>
+                    <p className="text-3xl font-bold text-button-blue">₹700</p>
                     <p className="text-gray-500">
                       Validity for {validity} months{" "}
                     </p>
@@ -166,14 +196,7 @@ function DescriptionModule() {
 
                   {/* Buy now */}
                   <div className="mb-4">
-                    <Button
-                      className=" w-full bg-blue-600 
-                      hover:bg-blue-700 
-                      text-white 
-                      transition-colors duration-200"
-                      >
-                      Buy Now
-                    </Button>
+                    <ButtonCustom title={"Buy Now"} />
                   </div>
 
                   {/* what you will get */}
@@ -182,12 +205,12 @@ function DescriptionModule() {
                       What you'll get:
                     </h3>
                     <div className="text-gray-500 text-sm flex gap-2 items-center">
-                      <BookOpen size={18} className="text-button-bg" />
+                      <BookOpen size={18} className="text-button-blue" />
                       <p>Access to {totalTests} mock tests</p>
                     </div>
 
                     <div className="text-gray-500 text-sm flex gap-2 items-center">
-                      <FileText size={18} className="text-button-bg" />
+                      <FileText size={18} className="text-button-blue" />
                       <p> {totalTests} mock tests</p>
                     </div>
                   </div>

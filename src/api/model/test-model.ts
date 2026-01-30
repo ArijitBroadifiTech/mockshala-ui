@@ -25,7 +25,7 @@ export interface TestDetailsData {
   updatedAt: string;
   updatedBy?:  string | null;
   slug: string;
-   paymentObj: Record<string, unknown>;
+  paymentObj: Record<string, unknown>;
 }
 
 interface ExamCategory {
