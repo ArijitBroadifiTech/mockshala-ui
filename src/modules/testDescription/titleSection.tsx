@@ -110,8 +110,8 @@ function TitleSection() {
 
             <div className="flex sm:hidden items-end">
               <div className="flex items-center gap-1 text-gray-600 text-sm">
-                <Clock size={14} />
-                <p>{validity} months{" "}</p>
+                <Clock size={14} className="text-button-blue"/>
+                <p className="text-[#002966]">{validity} months{" "}</p>
               </div>
             </div>
 
