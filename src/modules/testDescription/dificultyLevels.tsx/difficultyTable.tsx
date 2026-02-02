@@ -46,7 +46,7 @@ export function DifficultyTable({ filterData }: FilterDataProps) {
 
   return (
     <div>
-      <Table>
+      <Table >
         {/* <TableCaption>A list of your recent invoices.</TableCaption> */}
         <TableHeader>
           <TableRow>

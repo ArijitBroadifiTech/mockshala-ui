@@ -47,8 +47,8 @@ function AllTests() {
   };
 
   return (
-    <div className="w-full h-[70vh] overflow-hidden flex flex-col">
-      <Table className="w-full border-collapse">
+    <div className="w-full h-[70vh] overflow-y-auto flex flex-col">
+      <Table className="w-full border-collapse ">
         {/* <TableCaption>A list of your recent invoices.</TableCaption> */}
         <TableHeader className="sticky top-0 z-50 bg-white">
           <TableRow>
@@ -61,56 +61,55 @@ function AllTests() {
             <TableHead className="text-right">Action</TableHead>
           </TableRow>
         </TableHeader>
-      </Table>
-      <div className="flex-1 overflow-y-auto scrollbar-hide">
-        <Table className="w-full border-collapse">
-          <TableBody>
-            {testData?.tests.map((item) => (
-              <TableRow key={item._id}>
-                <TableCell
-                  className={
-                    difficultyTextColor[item.difficultyLevel.toLowerCase()] ??
-                    "text-gray-600"
-                  }
+
+        <TableBody>
+          {testData?.tests.map((item) => (
+            <TableRow key={item._id}>
+              <TableCell
+                className={
+                  difficultyTextColor[item.difficultyLevel.toLowerCase()] ??
+                  "text-gray-600"
+                }
+              >
+                {formattingWord(item.difficultyLevel)}
+              </TableCell>
+
+              <TableCell className=" flex justify-center items-center">
+                <Badge variant={"secondary"}>
+                  {formattingWord(item.testType)}
+                </Badge>
+              </TableCell>
+
+              <TableCell className="font-medium max-w-xs">
+                <p
+                  title={item.name}
+                  className="truncate overflow-hidden whitespace-nowrap text-table-text-primary"
                 >
-                  {formattingWord(item.difficultyLevel)}
-                </TableCell>
+                  {formatName(item.name)}
+                </p>
+              </TableCell>
 
-                <TableCell className=" flex justify-center items-center">
-                  <Badge variant={"secondary"}>
-                    {formattingWord(item.testType)}
-                  </Badge>
-                </TableCell>
+              <TableCell className="text-center">
+                {item.totalQuestions}
+              </TableCell>
+              <TableCell className="text-center">
+                {formatDuration(item.time)}
+              </TableCell>
 
-                <TableCell className="pl-2 font-medium ">
-                  <div className="max-w-xs w-full  truncate text-table-text-primary">
-                    <p title={item.name}>{formatName(item.name)}</p>
-                  </div>
-                </TableCell>
-                <TableCell className="text-center">
-                  {item.totalQuestions}
-                </TableCell>
-                <TableCell className="text-center">
-                  {formatDuration(item.time)}
-                </TableCell>
+              <TableCell className="text-center">{item.highestScore}</TableCell>
 
-                <TableCell className="text-center">
-                  {item.highestScore}
-                </TableCell>
-
-                <TableCell>
-                  {item.isOpen ? (
-                    <StartButton title={"Start"} />
-                  ) : (
-                    <BuyNow title={"Buy Now"} />
-                  )}
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-          <TableFooter></TableFooter>
-        </Table>
-      </div>
+              <TableCell>
+                {item.isOpen ? (
+                  <StartButton title={"Start"} />
+                ) : (
+                  <BuyNow title={"Buy Now"} />
+                )}
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+        <TableFooter></TableFooter>
+      </Table>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { DifficultyTable } from "../dificultyLevels.tsx/difficultyTable";
 import { useState } from "react";
@@ -64,7 +64,7 @@ export function TabsByType({ formatCategory,formatType}: DifficultyProps) {
 
     
 
-  console.log("you are switched to ", formatType);
+  // console.log("you are switched to ", formatType);
   
   // console.log(filterData);
   
@@ -86,9 +86,9 @@ export function TabsByType({ formatCategory,formatType}: DifficultyProps) {
       {formatCategory.map((item: string) => (
         <TabsContent key={item} value={item}>
           <Card>
-            <CardHeader>
+            {/* <CardHeader>
               <CardTitle className="text-[#002966]">{item} Level</CardTitle>
-            </CardHeader>
+            </CardHeader> */}
             <CardContent className="text-muted-foreground text-sm">
               {
                 (formatType ==='difficulty')? <DifficultyTable filterData={finalFilterData ?? []}/> :
