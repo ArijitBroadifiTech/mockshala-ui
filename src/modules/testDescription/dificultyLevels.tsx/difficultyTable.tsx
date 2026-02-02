@@ -45,14 +45,14 @@ export function DifficultyTable({ filterData }: FilterDataProps) {
   // };
 
   return (
-    <div>
-      <Table >
+    <div className="w-full h-[70vh] overflow-y-auto flex flex-col">
+      <Table className="w-full border-collapse ">
         {/* <TableCaption>A list of your recent invoices.</TableCaption> */}
-        <TableHeader>
+        <TableHeader className="sticky top-0 z-50 bg-white">
           <TableRow>
             {/* <TableHead>Difficulty</TableHead> */}
             <TableHead className="text-center">Test Type</TableHead>
-            <TableHead className="pl-2">Test Name</TableHead>
+            <TableHead>Test Name</TableHead>
             <TableHead className="text-center">Questions</TableHead>
             <TableHead className="text-center">Duration</TableHead>
             <TableHead className="text-center">Max Score</TableHead>
@@ -77,11 +77,15 @@ export function DifficultyTable({ filterData }: FilterDataProps) {
                 </Badge>
               </TableCell>
 
-              <TableCell className="pl-2 font-medium ">
-                <div className="max-w-xs w-full truncate text-table-text-primary">
-                  <p title={formatName(item.name)}>{formatName(item.name)}</p>
-                </div>
+              <TableCell className="font-medium max-w-xs ">
+                <p
+                  title={formatName(item.name)}
+                  className="truncate overflow-hidden whitespace-nowrap text-table-text-primary"
+                >
+                  {formatName(item.name)}
+                </p>
               </TableCell>
+
               <TableCell className="text-center">
                 {item.totalQuestions}
               </TableCell>
