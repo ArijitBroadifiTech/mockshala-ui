@@ -19,9 +19,9 @@ import { useTestDescriptionStore } from "@/stores/testStore";
 import type { TestDetailsData } from "@/api/model/test-model";
 
 import { TestHeaderSkeleton } from "./skeleton/testHeaderSkeleton";
-import { BuyCardSkeleton } from "./skeleton/buyCardSkeleton";
 import BuyNowSection from "./buyNowSection";
 import TitleSection from "./titleSection";
+import BuyNowSkeleton from "./skeleton/buyCardSkeleton";
 
 interface StoreDataProps {
   testData: TestDetailsData | null;
@@ -102,13 +102,9 @@ function DescriptionModule() {
 
             {/* Buy Now section */}
 
-            {isLoading ? (
-              <BuyCardSkeleton />
-            ) : (
-              <div className="col-span-3 lg:-mt-64 lg:mr-5 lg:z-10">
-                <BuyNowSection />
-              </div>
-            )}
+            <div className=" col-span-3 lg:-mt-64 lg:mr-5 lg:z-10 ">
+              {isLoading ? <BuyNowSkeleton /> : <BuyNowSection />}
+            </div>
           </div>
         </div>
       </div>

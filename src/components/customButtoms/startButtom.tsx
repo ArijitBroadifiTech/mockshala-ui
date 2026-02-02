@@ -12,7 +12,7 @@ function StartButton({ title }: ButtonProps) {
          to-button-blue 
         hover:bg-blue-700 hover:shadow-md
         text-white 
-        transition-colors duration-200 px-3 py-1.5"
+        transition-colors duration-200 px-3 py-1.5 hover:cursor-pointer"
       >
         <Play size={15} />
         {title}
