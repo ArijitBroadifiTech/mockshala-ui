@@ -6,37 +6,37 @@ import GroupByTestType from "./testTypes/index.tsx";
 import HtmlSetter from "../home/components/htmlSetter.tsx";
 import { useTestDescriptionStore } from "@/stores/testStore.ts";
 
-function TestDescription() {
+function TestDescriptionxx() {
   const { testData } = useTestDescriptionStore();
 
   return (
-    <div className="max-w-6xl w-full rounded-2xl border p-4 bg-white flex-col gap-3">
+    <div className="max-w-6xl w-full flex-col gap-3 bg-soft-blue-gradient ">
       <div>
         <Tabs defaultValue="All Tests" className="w-full">
           {/* Scrollable wrapper for TabsList */}
-          <div className="relative -mx-4 px-4 overflow-x-auto scrollbar-hide lg:overflow-x-visible lg:mx-0 lg:px-0">
-            <TabsList className="inline-flex w-auto min-w-full lg:min-w-0 lg:w-auto gap-1 md:gap-2 lg:gap-5">
+          <div className="relative -mx-4 px-4 py-3 overflow-x-auto scrollbar-hide lg:overflow-x-visible lg:mx-0 lg:px-0">
+            <TabsList className="bg-soft-blue-gradient inline-flex w-auto min-w-full lg:min-w-0 lg:w-auto gap-2">
               <TabsTrigger
                 value="All Tests"
-                className="whitespace-nowrap shrink-0"
+                className="whitespace-nowrap shrink-0 rounded-full p-4 data-[state=active]:bg-blue-600 bg-white data-[state=active]:text-white"
               >
                 All Tests
               </TabsTrigger>
               <TabsTrigger
                 value="Group by difficulty level"
-                className="whitespace-nowrap shrink-0"
+                className="whitespace-nowrap shrink-0 rounded-full p-4 data-[state=active]:bg-blue-600 bg-white data-[state=active]:text-white "
               >
                 Group by difficulty level
               </TabsTrigger>
               <TabsTrigger
                 value="Group by test type"
-                className="whitespace-nowrap shrink-0"
+                className="whitespace-nowrap shrink-0 rounded-full p-4 data-[state=active]:bg-blue-600 bg-white data-[state=active]:text-white"
               >
                 Group by test type
               </TabsTrigger>
               <TabsTrigger
                 value="Test description"
-                className="whitespace-nowrap shrink-0"
+                className="whitespace-nowrap shrink-0 rounded-full p-4 data-[state=active]:bg-blue-600 bg-white data-[state=active]:text-white"
               >
                 Test description
               </TabsTrigger>
@@ -44,12 +44,12 @@ function TestDescription() {
           </div>
 
           {/* All Tests */}
-          <TabsContent value="All Tests">
-            <Card className="border-0 lg:border shadow-none lg:shadow">
-              <CardHeader className="px-0 lg:px-6">
+          <TabsContent value="All Tests" className="border-0 shadow-none ">
+            <Card className="border-0  shadow-none bg-soft-blue-gradient ">
+              <CardHeader className="px-0">
                 <CardTitle className="text-card-header-darkblue ">{`Available Tests(${testData?.tests.length})`}</CardTitle>
               </CardHeader>
-              <CardContent className="text-muted-foreground text-sm px-0 lg:px-6">
+              <CardContent className="text-muted-foreground text-sm px-0 ">
                 <AllTests />
               </CardContent>
             </Card>
@@ -57,8 +57,11 @@ function TestDescription() {
 
           {/* Group by difficulty */}
           <TabsContent value="Group by difficulty level">
-            <Card>
-              <CardContent className="text-muted-foreground text-sm overflow-x-auto">
+            <Card className="border-0  shadow-none bg-soft-blue-gradient ">
+              <CardHeader className="px-0">
+                <CardTitle className="text-card-header-darkblue ">Choose Difficulty Level</CardTitle>
+              </CardHeader>
+              <CardContent className="py-0 px-0">
                 <GroupByDifficulty />
               </CardContent>
             </Card>
@@ -66,8 +69,11 @@ function TestDescription() {
 
           {/* Group by test type */}
           <TabsContent value="Group by test type">
-            <Card>
-              <CardContent className="text-muted-foreground text-sm overflow-x-auto">
+            <CardHeader className="px-0 ">
+                <CardTitle className="text-card-header-darkblue ">Choose Test Types</CardTitle>
+              </CardHeader>
+            <Card className="border-0  shadow-none bg-soft-blue-gradient ">
+              <CardContent className="text-muted-foreground text-sm overflow-x-auto px-0">
                 <GroupByTestType />
               </CardContent>
             </Card>
@@ -86,4 +92,4 @@ function TestDescription() {
   );
 }
 
-export default TestDescription;
+export default TestDescriptionxx;

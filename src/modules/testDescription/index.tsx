@@ -22,8 +22,9 @@ import { TestHeaderSkeleton } from "./skeleton/testHeaderSkeleton";
 import BuyNowSection from "./buyNowSection";
 import TitleSection from "./titleSection";
 import BuyNowSkeleton from "./skeleton/buyCardSkeleton";
-import TestDescriptionMobile from "./testDescriptionMobile";
+// import TestDescriptionMobile from "./testDescriptionMobile";
 import { useBreakpoints } from "@/hooks/useBreakpoints";
+import TestDescriptionxx from "./testDescriptionxx";
 
 interface StoreDataProps {
   testData: TestDetailsData | null;
@@ -99,7 +100,7 @@ function DescriptionModule() {
             <div className="col-span-9 overflow-x-auto">
               {
                 width ?  <TestDescription /> :
-                <TestDescriptionMobile />
+                <TestDescriptionxx />
               }
              
             </div>

@@ -109,9 +109,6 @@ function TestDescriptionMobile() {
           <h2 className="text-lg font-semibold text-gray-900">
             Available Tests ({filteredTests.length})
           </h2>
-          {/* <Button variant="link" className="text-blue-600 p-0 h-auto">
-            View All
-          </Button> */}
         </div>
 
         {/* Test Cards Grid */}

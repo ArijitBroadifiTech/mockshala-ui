@@ -1,11 +1,12 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { DifficultyTable } from "../dificultyLevels.tsx/difficultyTable";
+
 import { useState } from "react";
 import { useTestDescriptionStore } from "@/stores/testStore";
 import type { TestDetailsData } from "@/api/model/test-model";
 import { formattingWord } from "@/utils/formatting/formattingWord";
-import { TestTypeTable } from "../testType/testTypeTable";
+
+import AllTestMobile from "../allTests/allTestMobile";
 
 interface DifficultyProps {
   formatCategory: string[];
@@ -18,10 +19,12 @@ interface StoreDataProps {
   clearTestData: () => void;
 }
 
-export function TabsByType({ formatCategory, formatType }: DifficultyProps) {
+export function TabsByTypeMobile({ formatCategory, formatType }: DifficultyProps) {
   //fetch all test data
   const { testData }: StoreDataProps = useTestDescriptionStore();
 
+  // console.log(testData?.tests);
+  
   const [activeTab, setActiveTab] = useState(formatCategory[0]);
 
   const handleTabSwitch = (currentTab: string) => {
@@ -58,14 +61,14 @@ export function TabsByType({ formatCategory, formatType }: DifficultyProps) {
 
   // console.log("you are switched to ", formatType);
 
-  // console.log(filterData);
+  // console.log(finalFilterData);
 
   return (
     <Tabs
       value={activeTab}
       onValueChange={handleTabSwitch}
-      orientation="vertical"
-      className="w-[400px]"
+      orientation="horizontal"
+      className="w-full px-0 "
     >
       <TabsList>
         {formatCategory.map((item: string) => (
@@ -77,18 +80,31 @@ export function TabsByType({ formatCategory, formatType }: DifficultyProps) {
 
       {formatCategory.map((item: string) => (
         <TabsContent key={item} value={item} 
+          className="border-0 shadow-none px-0 "
           >
-          <Card>
+          <Card
+            className="border-0  shadow-none bg-soft-blue-gradient px-0"
+          >
             {/* <CardHeader>
               <CardTitle className="text-[#002966]">{item} Level</CardTitle>
             </CardHeader> */}
-            <CardContent className="text-muted-foreground text-sm ">
+
+            {/* <CardContent className="text-muted-foreground text-sm ">
               {formatType === "difficulty" ? (
                 <DifficultyTable filterData={finalFilterData ?? []} />
               ) : (
                 <TestTypeTable filterData={finalFilterData ?? []} />
               )}
+            </CardContent> */}
+
+            <CardContent className="text-muted-foreground text-sm px-0">
+              {formatType === "difficulty" ? (
+                <AllTestMobile filteredTests={finalFilterData ?? []} />
+              ) : (
+                <AllTestMobile filteredTests={finalFilterData ?? []} />
+              )}
             </CardContent>
+
           </Card>
         </TabsContent>
       ))}
