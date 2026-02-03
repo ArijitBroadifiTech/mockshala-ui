@@ -5,41 +5,51 @@ import GroupByDifficulty from "./dificultyLevels.tsx/index.tsx";
 import GroupByTestType from "./testTypes/index.tsx";
 import HtmlSetter from "../home/components/htmlSetter.tsx";
 import { useTestDescriptionStore } from "@/stores/testStore.ts";
-import type { TestDetailsData } from "@/api/model/test-model.ts";
-
-interface StoreDataProps {
-  testData: TestDetailsData | null;
-  setTestData: (data: TestDetailsData) => void;
-  clearTestData: () => void;
-}
 
 function TestDescription() {
-  const { testData }: StoreDataProps = useTestDescriptionStore();
-  // console.log(testData?.name);
+  const { testData } = useTestDescriptionStore();
 
   return (
-    <div className=" max-w-6xl w-full rounded-2xl border p-4 bg-white  flex-col gap-3 overflow-x-auto">
+    <div className="max-w-6xl w-full rounded-2xl border p-4 bg-white flex-col gap-3">
       <div>
         <Tabs defaultValue="All Tests" className="w-full">
-          
-          <TabsList className="flex gap-5">
-            <TabsTrigger value="All Tests">All Tests</TabsTrigger>
-            <TabsTrigger value="Group by difficulty level">
-              Group by difficulty level
-            </TabsTrigger>
-            <TabsTrigger value="Group by test type">
-              Group by test type
-            </TabsTrigger>
-            <TabsTrigger value="Test description">Test description</TabsTrigger>
-          </TabsList>
+          {/* Scrollable wrapper for TabsList */}
+          <div className="relative -mx-4 px-4 overflow-x-auto scrollbar-hide lg:overflow-x-visible lg:mx-0 lg:px-0">
+            <TabsList className="inline-flex w-auto min-w-full lg:min-w-0 lg:w-auto gap-1 md:gap-2 lg:gap-5">
+              <TabsTrigger 
+                value="All Tests"
+                className="whitespace-nowrap shrink-0"
+              >
+                All Tests
+              </TabsTrigger>
+              <TabsTrigger 
+                value="Group by difficulty level"
+                className="whitespace-nowrap shrink-0"
+              >
+                Group by difficulty level
+              </TabsTrigger>
+              <TabsTrigger 
+                value="Group by test type"
+                className="whitespace-nowrap shrink-0"
+              >
+                Group by test type
+              </TabsTrigger>
+              <TabsTrigger 
+                value="Test description"
+                className="whitespace-nowrap shrink-0"
+              >
+                Test description
+              </TabsTrigger>
+            </TabsList>
+          </div>
 
           {/* All Tests */}
           <TabsContent value="All Tests">
-            <Card>
-              <CardHeader>
-                <CardTitle>Test List</CardTitle>
+            <Card className="border-0 lg:border shadow-none lg:shadow">
+              <CardHeader className="px-0 lg:px-6">
+                <CardTitle className="text-card-header-darkblue ">{`Available Tests(${testData?.tests.length})`}</CardTitle>
               </CardHeader>
-              <CardContent className="text-muted-foreground text-sm">
+              <CardContent className="text-muted-foreground text-sm px-0 lg:px-6">
                 <AllTests />
               </CardContent>
             </Card>
@@ -64,8 +74,6 @@ function TestDescription() {
           </TabsContent>
         </Tabs>
       </div>
-
-      {/* <h1 className="text-gray-700 font-semibold">Description</h1> */}
     </div>
   );
 }

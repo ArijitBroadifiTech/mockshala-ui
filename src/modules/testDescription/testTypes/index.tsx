@@ -32,7 +32,7 @@ function GroupByTestType() {
 
   return (
     <div>
-      <Card>
+      <Card className="border-0 lg:border shadow-none lg:shadow">
         <CardContent className="text-muted-foreground text-sm overflow-x-auto">
           <TabsByType formatCategory={formatTypes} formatType="testType"/>
         </CardContent>

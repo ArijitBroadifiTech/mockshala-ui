@@ -22,6 +22,8 @@ import { TestHeaderSkeleton } from "./skeleton/testHeaderSkeleton";
 import BuyNowSection from "./buyNowSection";
 import TitleSection from "./titleSection";
 import BuyNowSkeleton from "./skeleton/buyCardSkeleton";
+import TestDescriptionMobile from "./testDescriptionMobile";
+import { useBreakpoints } from "@/hooks/useBreakpoints";
 
 interface StoreDataProps {
   testData: TestDetailsData | null;
@@ -29,6 +31,11 @@ interface StoreDataProps {
   clearTestData: () => void;
 }
 function DescriptionModule() {
+
+  //Check the width to render test series conditionally
+  const width = useBreakpoints("lg");
+  // console.log("width",width);
+
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   });
@@ -46,7 +53,7 @@ function DescriptionModule() {
   });
 
   // console.log("data is",data);
-  console.log("isLoading", isLoading);
+  // console.log("isLoading", isLoading);
   // console.log("is data", data);
 
   useEffect(() => {
@@ -62,7 +69,7 @@ function DescriptionModule() {
   // console.log(IMAGE_BASE_URL + fetchTestData?.image);
 
   return (
-    <div className="w-full bg-linear-to-r from-gray-100 via-blue-100/70 to-indigo-100 h-full min-h-screen">
+    <div className="w-full bg-soft-blue-gradient h-full min-h-screen">
       <div className="w-full  h-1/2">
         <div className="w-full container px-4 py-5 mx-auto">
           {/* bread crumbs   */}
@@ -80,9 +87,7 @@ function DescriptionModule() {
           {isLoading ? (
             <TestHeaderSkeleton />
           ) : (
-            <div
-             
-            >
+            <div>
               {/* Title Section */}
               <TitleSection />
             </div>
@@ -92,7 +97,11 @@ function DescriptionModule() {
           <div className="grid grid-rows-2 lg:grid-cols-12 gap-7">
             {/* Description Section */}
             <div className="col-span-9 overflow-x-auto">
-              <TestDescription />
+              {
+                width ?  <TestDescription /> :
+                <TestDescriptionMobile />
+              }
+             
             </div>
 
             {/* Buy Now section */}
