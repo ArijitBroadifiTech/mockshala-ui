@@ -68,7 +68,7 @@ export function TabsByTypeMobile({ formatCategory, formatType }: DifficultyProps
       value={activeTab}
       onValueChange={handleTabSwitch}
       orientation="horizontal"
-      className="w-full px-0 "
+      className="w-full"
     >
       <TabsList>
         {formatCategory.map((item: string) => (

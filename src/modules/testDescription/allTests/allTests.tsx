@@ -8,8 +8,8 @@ import {
 } from "@/components/ui/table";
 import type { TestDetailsData } from "@/api/model/test-model";
 import { Badge } from "@/components/ui/badge";
-import StartButton from "@/components/customButtoms/startButtom";
-import BuyNow from "@/components/customButtoms/buyNow";
+import StartButton from "@/components/customButtons/startButtom";
+import BuyNow from "@/components/customButtons/buyNow";
 import { formatName } from "@/utils/formatting/formatName";
 import { formattingWord } from "@/utils/formatting/formattingWord";
 import { useTestDescriptionStore } from "@/stores/testStore";
@@ -61,13 +61,11 @@ function AllTests() {
     return `${hours} hr ${remainingMinutes} min`;
   };
 
-
-
   return (
-    <div >
+    <div>
       {/* For mobile and tablet screen */}
       <div className="flex lg:hidden">
-        <AllTestMobile filteredTests={testData?.tests}/>
+        <AllTestMobile filteredTests={testData?.tests} />
       </div>
 
       <div className="w-full h-[70vh] overflow-y-auto flex flex-col">
@@ -94,8 +92,9 @@ function AllTests() {
                   <TableRow key={item._id}>
                     <TableCell
                       className={
-                        difficultyTextColor[item.difficultyLevel.toLowerCase()] ??
-                        "text-gray-600"
+                        difficultyTextColor[
+                          item.difficultyLevel.toLowerCase()
+                        ] ?? "text-gray-600"
                       }
                     >
                       {formattingWord(item.difficultyLevel)}

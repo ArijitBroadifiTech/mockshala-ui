@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useTestDescriptionStore } from "@/stores/testStore";
 import type { TestDetailsData } from "@/api/model/test-model";
 import { formattingWord } from "@/utils/formatting/formattingWord";
-import { TestTypeTable } from "../testType/testTypeTable";
+import { TestTypeTable } from "../testTypes/testTypeTable";
 
 interface DifficultyProps {
   formatCategory: string[];

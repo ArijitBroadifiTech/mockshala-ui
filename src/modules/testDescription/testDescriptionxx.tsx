@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent} from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import AllTests from "./allTests/allTests.tsx";
 import GroupByDifficulty from "./dificultyLevels.tsx/index.tsx";
@@ -46,43 +46,37 @@ function TestDescriptionxx() {
           {/* All Tests */}
           <TabsContent value="All Tests" className="border-0 shadow-none  ">
             <Card className="border-0  shadow-none bg-soft-blue-gradient py-4 md:py-6">
-              <CardHeader className="px-0">
-                <CardTitle className="text-card-header-darkblue ">{`Available Tests(${testData?.tests.length})`}</CardTitle>
-              </CardHeader>
-              <CardContent className="text-muted-foreground text-sm px-0 py-0">
+              <div>
+                <h3 className="text-card-header-darkblue font-semibold tracking-wide">{`Available Tests(${testData?.tests.length})`}</h3>
+              </div>         
                 <AllTests />
-              </CardContent>
             </Card>
           </TabsContent>
 
           {/* Group by difficulty */}
           <TabsContent value="Group by difficulty level">
-            <Card className="border-0  shadow-none bg-soft-blue-gradient py-4 md:py-6">
-              <CardHeader className="px-0  ">
-                <CardTitle className="text-card-header-darkblue ">Choose Difficulty Level</CardTitle>
-              </CardHeader>
-              <CardContent className=" px-0 py-0">
+            <div className=" bg-soft-blue-gradient py-4 md:py-6">
+              <div>
+                <h3 className="text-card-header-darkblue font-semibold tracking-wide mb-3">Choose Difficulty Level</h3>
+              </div>             
                 <GroupByDifficulty />
-              </CardContent>
-            </Card>
+            </div>
           </TabsContent>
 
           {/* Group by test type */}
           <TabsContent value="Group by test type">
             
-            <Card className="border-0  shadow-none bg-soft-blue-gradient py-4 md:py-6">
-              <CardHeader className="px-0 ">
-                <CardTitle className="text-card-header-darkblue ">Choose Test Types</CardTitle>
-              </CardHeader>
-              <CardContent className="text-muted-foreground text-sm overflow-x-auto px-0">
+            <div className=" bg-soft-blue-gradient py-4 md:py-6">
+              <div>
+                <h3 className="text-card-header-darkblue font-semibold tracking-wide mb-3">Choose Test Types</h3>
+              </div>             
                 <GroupByTestType />
-              </CardContent>
-            </Card>
+            </div>
           </TabsContent>
 
           <TabsContent value="Test description">
-            <Card>
-              <CardContent>
+            <Card className="mt-3">
+              <CardContent >
                 <HtmlSetter html={testData?.description ?? ""} />
               </CardContent>
             </Card>

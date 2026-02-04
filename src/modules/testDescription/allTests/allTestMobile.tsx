@@ -16,7 +16,7 @@ import { formattingWord } from "@/utils/formatting/formattingWord";
 import type { TestDetailsData } from "@/api/model/test-model";
 
 interface FilterDataProps {
-  filteredTests: TestDetailsData["tests"] ;
+  filteredTests: TestDetailsData["tests"] | undefined ;
 }
 
 function AllTestMobile({ filteredTests }: FilterDataProps) {
@@ -72,7 +72,7 @@ function AllTestMobile({ filteredTests }: FilterDataProps) {
               </div>
 
               {/* Test Name */}
-              <div className="mb-4 flex items-start justify-between gap-2">
+              <div className="mb-4 flex items-start justify-between gap-3">
                 <h3 className="text-base font-semibold text-gray-900 leading-tight">
                   {formatName(test.name)}
                 </h3>

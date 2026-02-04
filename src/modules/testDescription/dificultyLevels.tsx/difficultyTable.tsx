@@ -11,8 +11,8 @@ import {
 } from "@/components/ui/table";
 import type { TestDetailsData } from "@/api/model/test-model";
 import { Badge } from "@/components/ui/badge";
-import StartButton from "@/components/customButtoms/startButtom";
-import BuyNow from "@/components/customButtoms/buyNow";
+import StartButton from "@/components/customButtons/startButtom";
+import BuyNow from "@/components/customButtons/buyNow";
 import { formatName } from "@/utils/formatting/formatName";
 import { formattingWord } from "@/utils/formatting/formattingWord";
 
