@@ -48,7 +48,7 @@ function TestDescription() {
           <TabsContent value="All Tests">
             <Card className="border-0 lg:border shadow-none lg:shadow">
               <CardHeader className="px-0 lg:px-6">
-                <CardTitle className="text-card-header-darkblue ">{`Available Tests(${testData?.tests.length})`}</CardTitle>
+                <CardTitle className="text-title-darkblue ">{`Available Tests(${testData?.tests.length})`}</CardTitle>
               </CardHeader>
               <CardContent className="text-muted-foreground text-sm px-0 lg:px-6">
                 <AllTests />

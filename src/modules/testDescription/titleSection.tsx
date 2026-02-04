@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { question, testCount, validityImg } from "@/assets";
 import { useTestDescriptionStore } from "@/stores/testStore";
 import type { TestDetailsData } from "@/api/model/test-model";
@@ -7,6 +7,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Clock, HeartPlus, Share2 } from "lucide-react";
 import { formatToK } from "@/utils/formatting/formatNumber";
+import DescriptionModal from "./modal/modal";
+import FullDescriptionSection from "./fullDescriptionSection";
 
 interface StoreDataProps {
   testData: TestDetailsData | null;
@@ -15,6 +17,8 @@ interface StoreDataProps {
 }
 
 function TitleSection() {
+  const [showModal, setShowModal] = useState(false)
+
   const { testData: fetchTestData }: StoreDataProps = useTestDescriptionStore();
 
   // Total test count
@@ -33,6 +37,9 @@ function TitleSection() {
 
   //course validity
   const validity = Math.floor(time);
+
+  //fetch descriptionDetails
+  const descriptionDetails =fetchTestData?.description ?? '' ;
 
   return (
     <div>
@@ -128,7 +135,11 @@ function TitleSection() {
         {/* save and share */}
         <div className="flex justify-between items-center">
             
-                <Button variant={"ghost"} className="text-gray-600">Read Full Description
+                <Button 
+                  variant={"ghost"} 
+                  className="text-gray-600"
+                  onClick={()=> setShowModal(true)}
+                  >Read Full Description
                   <ArrowRight />
                 </Button>
                  
@@ -140,7 +151,13 @@ function TitleSection() {
         </div>
         
       </div>
-
+      {
+        showModal && (
+          <DescriptionModal onClose={()=>setShowModal(false)}>
+              <FullDescriptionSection description={descriptionDetails}/>
+          </DescriptionModal>
+        )
+      }
       {/* Above large screen */}
       <div className="hidden lg:flex flex-col">
         <div

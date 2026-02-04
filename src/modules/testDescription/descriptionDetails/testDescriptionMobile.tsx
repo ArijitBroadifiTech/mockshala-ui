@@ -55,7 +55,7 @@ function TestDescriptionMobile() {
           <TabsContent value="All Tests" className="border-0 shadow-none  ">
             <Card className="border-0  shadow-none bg-soft-blue-gradient py-4 md:py-6">
               <div>
-                <h3 className="text-card-header-darkblue font-semibold tracking-wide">{`Available Tests(${allTestLength()})`}</h3>
+                <h3 className="text-title-darkblue font-semibold tracking-wide">{`Available Tests(${allTestLength()})`}</h3>
               </div>
               <AllTests />
             </Card>
@@ -65,7 +65,7 @@ function TestDescriptionMobile() {
           <TabsContent value="Group by difficulty level">
             <div className=" bg-soft-blue-gradient py-4 md:py-6">
               <div>
-                <h3 className="text-card-header-darkblue font-semibold tracking-wide mb-3">
+                <h3 className="text-title-darkblue font-semibold tracking-wide mb-3">
                   Choose Difficulty Level
                 </h3>
               </div>
@@ -77,7 +77,7 @@ function TestDescriptionMobile() {
           <TabsContent value="Group by test type">
             <div className=" bg-soft-blue-gradient py-4 md:py-6">
               <div>
-                <h3 className="text-card-header-darkblue font-semibold tracking-wide mb-3">
+                <h3 className="text-title-darkblue font-semibold tracking-wide mb-3">
                   Choose Test Types
                 </h3>
               </div>
