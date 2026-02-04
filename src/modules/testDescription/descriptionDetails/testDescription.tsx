@@ -1,10 +1,11 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import AllTests from "./allTests/allTests.tsx";
-import GroupByDifficulty from "./dificultyLevels.tsx/index.tsx";
-import GroupByTestType from "./testTypes/index.tsx";
-import HtmlSetter from "../home/components/htmlSetter.tsx";
+
+import GroupByDifficulty from "@/modules/testDescription/difficultyLevels/index.tsx";
+import GroupByTestType from "@/modules/testDescription/testTypes/index.tsx";
+import HtmlSetter from "@/components/htmlSetter.tsx";
 import { useTestDescriptionStore } from "@/stores/testStore.ts";
+import AllTests from "../allTests/allTests.tsx";
 
 function TestDescription() {
   const { testData } = useTestDescriptionStore();

@@ -1,12 +1,12 @@
-import { Card, CardContent} from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import AllTests from "./allTests/allTests.tsx";
-import GroupByDifficulty from "./dificultyLevels.tsx/index.tsx";
-import GroupByTestType from "./testTypes/index.tsx";
-import HtmlSetter from "../home/components/htmlSetter.tsx";
+import AllTests from "../allTests/allTests.tsx";
+import GroupByDifficulty from "../difficultyLevels/index.tsx";
+import GroupByTestType from "../testTypes/index.tsx";
+import HtmlSetter from "../../../components/htmlSetter.tsx";
 import { useTestDescriptionStore } from "@/stores/testStore.ts";
 
-function TestDescriptionxx() {
+function TestDescriptionMobile() {
   const { testData } = useTestDescriptionStore();
 
   return (
@@ -48,8 +48,8 @@ function TestDescriptionxx() {
             <Card className="border-0  shadow-none bg-soft-blue-gradient py-4 md:py-6">
               <div>
                 <h3 className="text-card-header-darkblue font-semibold tracking-wide">{`Available Tests(${testData?.tests.length})`}</h3>
-              </div>         
-                <AllTests />
+              </div>
+              <AllTests />
             </Card>
           </TabsContent>
 
@@ -57,26 +57,29 @@ function TestDescriptionxx() {
           <TabsContent value="Group by difficulty level">
             <div className=" bg-soft-blue-gradient py-4 md:py-6">
               <div>
-                <h3 className="text-card-header-darkblue font-semibold tracking-wide mb-3">Choose Difficulty Level</h3>
-              </div>             
-                <GroupByDifficulty />
+                <h3 className="text-card-header-darkblue font-semibold tracking-wide mb-3">
+                  Choose Difficulty Level
+                </h3>
+              </div>
+              <GroupByDifficulty />
             </div>
           </TabsContent>
 
           {/* Group by test type */}
           <TabsContent value="Group by test type">
-            
             <div className=" bg-soft-blue-gradient py-4 md:py-6">
               <div>
-                <h3 className="text-card-header-darkblue font-semibold tracking-wide mb-3">Choose Test Types</h3>
-              </div>             
-                <GroupByTestType />
+                <h3 className="text-card-header-darkblue font-semibold tracking-wide mb-3">
+                  Choose Test Types
+                </h3>
+              </div>
+              <GroupByTestType />
             </div>
           </TabsContent>
 
           <TabsContent value="Test description">
             <Card className="mt-3">
-              <CardContent >
+              <CardContent>
                 <HtmlSetter html={testData?.description ?? ""} />
               </CardContent>
             </Card>
@@ -87,4 +90,4 @@ function TestDescriptionxx() {
   );
 }
 
-export default TestDescriptionxx;
+export default TestDescriptionMobile;

@@ -37,7 +37,7 @@ function TitleSection() {
     <div>
       {/* Mobile View */}
       <div
-        className="flex  flex-col gap-2 lg:hidden  rounded-2xl  bg-white/50backdrop-blur-2xl
+        className="flex  flex-col gap-2 lg:hidden  rounded-2xl  bg-white/50 backdrop-blur-2xl
             border border-white/60  ring-1 ring-white/30 shadow-lg 
             px-4 py-4 mb-6"
       >

@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 // import { ImageWithFallback } from "../fallback/ImageWithFallback";
 
-import TestDescription from "./testDescription";
+
 import { useEffect } from "react";
 
 import { useTestDescriptionStore } from "@/stores/testStore";
@@ -24,7 +24,9 @@ import TitleSection from "./titleSection";
 import BuyNowSkeleton from "./skeleton/buyCardSkeleton";
 // import TestDescriptionMobile from "./testDescriptionMobile";
 import { useBreakpoints } from "@/hooks/useBreakpoints";
-import TestDescriptionxx from "./testDescriptionxx";
+import TestDescription from "./descriptionDetails/testDescription";
+import TestDescriptionMobile from "./descriptionDetails/testDescriptionMobile";
+
 
 interface StoreDataProps {
   testData: TestDetailsData | null;
@@ -32,7 +34,6 @@ interface StoreDataProps {
   clearTestData: () => void;
 }
 function DescriptionModule() {
-
   //Check the width to render test series conditionally
   const width = useBreakpoints("lg");
   // console.log("width",width);
@@ -98,11 +99,7 @@ function DescriptionModule() {
           <div className="grid grid-rows-2 lg:grid-cols-12 gap-7">
             {/* Description Section */}
             <div className="col-span-9 overflow-x-auto">
-              {
-                width ?  <TestDescription /> :
-                <TestDescriptionxx />
-              }
-             
+              {width ? <TestDescription /> : <TestDescriptionMobile />}
             </div>
 
             {/* Buy Now section */}

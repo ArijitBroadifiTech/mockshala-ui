@@ -8,7 +8,7 @@ import { useState } from "react";
 import { formatName } from "@/utils/formatting/formatName";
 import { formattingWord } from "@/utils/formatting/formattingWord";
 
-function TestDescriptionMobile() {
+function TestDescriptionBackUp() {
   const { testData } = useTestDescriptionStore();
   const [activeFilter, setActiveFilter] = useState("All Tests");
 
@@ -203,4 +203,4 @@ function TestDescriptionMobile() {
   );
 }
 
-export default TestDescriptionMobile;
+export default TestDescriptionBackUp;

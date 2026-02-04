@@ -49,7 +49,7 @@ function AllTestMobile({ filteredTests }: FilterDataProps) {
         {filteredTests?.map((test) => (
           <Card
             key={test._id}
-            className="overflow-hidden hover:shadow-lg transition-shadow duration-200 border-gray-200"
+            className="overflow-hidden "
           >
             <CardContent className="px-4">
               {/* Badges */}
@@ -108,7 +108,7 @@ function AllTestMobile({ filteredTests }: FilterDataProps) {
 
               {/* Action Button */}
               {test.isOpen ? (
-                <Button className="w-full bg-gradient-to-r from-button-sky to-button-blue  text-white font-semibold rounded-lg h-10">
+                <Button className="w-full bg-linear-to-r from-button-sky to-button-blue  text-white font-semibold rounded-lg h-10">
                   <Play size={18} className="mr-1" />
                   Start Test
                 </Button>

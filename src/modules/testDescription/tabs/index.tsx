@@ -1,6 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { DifficultyTable } from "../dificultyLevels.tsx/difficultyTable";
+import { DifficultyTable } from "../difficultyLevels/difficultyTable";
 import { useState } from "react";
 import { useTestDescriptionStore } from "@/stores/testStore";
 import type { TestDetailsData } from "@/api/model/test-model";
@@ -76,8 +76,7 @@ export function TabsByType({ formatCategory, formatType }: DifficultyProps) {
       </TabsList>
 
       {formatCategory.map((item: string) => (
-        <TabsContent key={item} value={item} 
-          >
+        <TabsContent key={item} value={item}>
           <Card>
             {/* <CardHeader>
               <CardTitle className="text-[#002966]">{item} Level</CardTitle>
