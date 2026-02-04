@@ -3,15 +3,8 @@ import { testAPI } from "@/api/services/getTestDetails";
 
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "@tanstack/react-router";
-import {
-  // BookOpen,
-  ChevronRight,
-  // FileText,
-  // HeartPlus,
-  // Share2,
-} from "lucide-react";
-// import { ImageWithFallback } from "../fallback/ImageWithFallback";
 
+// import { ImageWithFallback } from "../fallback/ImageWithFallback";
 
 import { useEffect } from "react";
 
@@ -28,6 +21,14 @@ import TestDescription from "./descriptionDetails/testDescription";
 import TestDescriptionMobile from "./descriptionDetails/testDescriptionMobile";
 import MobileTestHeaderSkeleton from "./skeleton/mobileTestHeaderSkeleton";
 
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 
 interface StoreDataProps {
   testData: TestDetailsData | null;
@@ -43,7 +44,7 @@ function DescriptionModule() {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   });
 
-  const { examCategory, testSlug } = useParams({
+  const { examCategory, testSlug, lang } = useParams({
     from: "/$lang/exams/$examCategory/$testSlug/",
   });
 
@@ -65,18 +66,31 @@ function DescriptionModule() {
     }
   }, [data, setTestData]);
 
-  // const fetchTestData = data?.data;
 
-  // console.log(fetchTestData);
-
-  // console.log(IMAGE_BASE_URL + fetchTestData?.image);
 
   return (
     <div className="w-full bg-soft-blue-gradient h-full min-h-screen">
       <div className="w-full  h-1/2">
         <div className="w-full container px-4 py-5 mx-auto">
           {/* bread crumbs   */}
-          <div className="flex gap-2 text-xs text-[#1B4965] items-center pb-6 xl:pb-8">
+
+          <Breadcrumb>
+            <BreadcrumbList className="text-xs md:text-sm text-[#1B4965] items-center pb-6 xl:pb-8">
+              <BreadcrumbItem>
+                <BreadcrumbLink href={`/${lang}/`}>Home</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink href={`/${lang}/exams`}>Exams</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem >
+                <BreadcrumbPage className="text-button-blue">{data?.data.name}</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+
+          {/* <div className="flex gap-2 text-xs text-[#1B4965] items-center pb-6 xl:pb-8">
             <span>Home</span>
             <ChevronRight size={18} />
 
@@ -84,10 +98,11 @@ function DescriptionModule() {
             <ChevronRight size={18} />
 
             <span className="text-button-blue">MPPSC Mock Test</span>
-          </div>
+          </div> */}
 
           {/* Header section */}
-         {isLoading && (width ? <TestHeaderSkeleton /> : <MobileTestHeaderSkeleton />)}
+          {isLoading &&
+            (width ? <TestHeaderSkeleton /> : <MobileTestHeaderSkeleton />)}
 
           {!isLoading && (
             <div>
@@ -95,10 +110,8 @@ function DescriptionModule() {
             </div>
           )}
 
-
           {/* Description section */}
 
-          
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-7">
             {/* Description Section */}
             <div className="col-span-9 overflow-x-auto">

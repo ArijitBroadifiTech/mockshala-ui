@@ -51,7 +51,7 @@ function TitleSection() {
         {/* Image and Header */}
         <div className="flex gap-4 mb-3 items-center">
           <div className="shrink-0">
-            <div className="rounded-full h-16 sm:h-20 w-16 sm:-20 p-2 relative overflow-hidden ">
+            <div className="rounded-full h-16 w-16 sm:h-20 sm:w-20 p-2 relative overflow-hidden ">
               <img
                 src={IMAGE_BASE_URL + fetchTestData?.image}
                 alt={fetchTestData?.name || "Test series image"}
@@ -74,7 +74,7 @@ function TitleSection() {
         </div>
 
         {/* Features */}
-        <div className="flex gap-6 items-center text-[#002966] pb-4 px-1 sm:px-2">
+        <div className="flex gap-6 items-center text-[#002966] pb-4 px-1 ">
           <div className="flex items-center gap-2 text-sm">
             <img src={testCount} alt="questions" className="h-6 shadow-2xl" />
             <div>
@@ -96,8 +96,8 @@ function TitleSection() {
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-4 sm:justify-between mb-5 sm:mb-6 px-1 sm:px-2">
-          {/* Price and buy now */}
+        {/* Price and buy now */}
+        <div className="flex flex-col sm:flex-row gap-4 sm:justify-between mb-5 sm:mb-6 px-1 ">
           <div className=" flex justify-between">
             <div>
               <div className="flex items-center gap-2">
@@ -133,7 +133,7 @@ function TitleSection() {
         </div>
 
         {/* save and share */}
-        <div className="flex justify-between items-center  px-1 sm:px-2 sm:mb-2">
+        <div className="flex justify-between items-center  px-1 sm:mb-2">
           <button
             className="text-gray-600 flex items-center gap-1 text-sm font-medium "
             onClick={() => setShowModal(true)}
