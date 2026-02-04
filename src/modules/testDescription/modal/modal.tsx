@@ -16,7 +16,7 @@ const DescriptionModal: React.FC<ModalProps> = ({ onClose, children }) => {
   }, []);
 
   return (
-    <div className="fixed inset-0 backdrop-blur-lg bg-black/10 flex items-center justify-center container mx-auto px-4 py-2 z-10">
+    <div className="fixed inset-0 backdrop-blur-lg bg-black/10 flex items-center justify-center  mx-auto px-4 py-2 z-10">
       <div className="container mx-auto max-h-[90%] flex flex-col items-center justify-center">
         <button
           onClick={onClose}

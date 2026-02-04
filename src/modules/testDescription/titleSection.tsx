@@ -17,7 +17,7 @@ interface StoreDataProps {
 }
 
 function TitleSection() {
-  const [showModal, setShowModal] = useState(false)
+  const [showModal, setShowModal] = useState(false);
 
   const { testData: fetchTestData }: StoreDataProps = useTestDescriptionStore();
 
@@ -25,10 +25,9 @@ function TitleSection() {
   const totalTests = fetchTestData?.tests.length;
 
   // total questions no
-  const totalQuestions = fetchTestData?.tests.reduce(
-    (sum, test) => sum + test.totalQuestions,
-    0,
-  ) ?? 0;
+  const totalQuestions =
+    fetchTestData?.tests.reduce((sum, test) => sum + test.totalQuestions, 0) ??
+    0;
 
   let time = 0;
   if (fetchTestData) {
@@ -39,7 +38,7 @@ function TitleSection() {
   const validity = Math.floor(time);
 
   //fetch descriptionDetails
-  const descriptionDetails =fetchTestData?.description ?? '' ;
+  const descriptionDetails = fetchTestData?.description ?? "";
 
   return (
     <div>
@@ -75,7 +74,7 @@ function TitleSection() {
         </div>
 
         {/* Features */}
-        <div className="flex gap-10 items-center text-[#002966] pb-4">
+        <div className="flex gap-6 items-center text-[#002966] pb-4 px-1 sm:px-2">
           <div className="flex items-center gap-2 text-sm">
             <img src={testCount} alt="questions" className="h-6 shadow-2xl" />
             <div>
@@ -97,67 +96,70 @@ function TitleSection() {
           </div>
         </div>
 
-        {/* Price and buy now */}
-        <div className=" mb-3 flex justify-between">
-          <div>
-            <div className="flex items-center gap-2">
-              <p className="text-xl font-bold text-button-blue">₹700</p>
-              <p className="text-gray-500 line-through text-base ">₹{1000}</p>
+        <div className="flex flex-col sm:flex-row gap-4 sm:justify-between mb-5 sm:mb-6 px-1 sm:px-2">
+          {/* Price and buy now */}
+          <div className=" flex justify-between">
+            <div>
+              <div className="flex items-center gap-2">
+                <p className="text-xl font-bold text-button-blue">₹700</p>
+                <p className="text-gray-500 line-through text-base ">₹{1000}</p>
+              </div>
+
+              <div className="flex ">
+                <Badge className="bg-green-600 text-white">30% off</Badge>
+              </div>
             </div>
 
-            <div className="flex ">
-              <Badge className="bg-green-600 text-white">30% off</Badge>
+            <div className="flex sm:hidden items-end">
+              <div className="flex items-center gap-1 text-gray-600 text-sm">
+                <Clock size={14} className="text-button-blue" />
+                <p className="text-[#002966]">{validity} months </p>
+              </div>
             </div>
           </div>
 
-          <div className="flex sm:hidden items-end">
-            <div className="flex items-center gap-1 text-gray-600 text-sm">
-              <Clock size={14} className="text-button-blue" />
-              <p className="text-[#002966]">{validity} months </p>
-            </div>
+          <div className="flex items-end ">
+            {/* Buy Now */}
+            <Button
+              className="w-full px-8 bg-gradient-to-r from-button-sky text-base
+                    to-button-blue 
+                    hover:from-blue-600 hover:to-blue-600 hover:shadow-md
+                    text-white font-semibold
+                    transition-colors duration-200 hover:cursor-pointer shadow-sm"
+            >
+              Buy Now
+            </Button>
           </div>
-        </div>
-
-        <div className="mb-5">
-          {/* Buy Now */}
-
-          <Button
-            className="w-full sm:w-auto px-5 bg-gradient-to-r from-button-sky text-base
-                  to-button-blue 
-                  hover:from-blue-600 hover:to-blue-600 hover:shadow-md
-                  text-white font-semibold
-                  transition-colors duration-200 hover:cursor-pointer shadow-sm"
-          >
-            Buy Now
-          </Button>
         </div>
 
         {/* save and share */}
-        <div className="flex justify-between items-center">
-            
-                <Button 
-                  variant={"ghost"} 
-                  className="text-gray-600"
-                  onClick={()=> setShowModal(true)}
-                  >Read Full Description
-                  <ArrowRight />
-                </Button>
-                 
-           
-            <div className="flex gap-4 ">
+        <div className="flex justify-between items-center  px-1 sm:px-2 sm:mb-2">
+          <button
+            className="text-gray-600 flex items-center gap-1 text-sm font-medium "
+            onClick={() => setShowModal(true)}
+          >
+            Read Full Description
+            <ArrowRight size={17} />
+          </button>
+
+          <div className="flex gap-5 font-medium">
+            <div className=" text-gray-500 flex items-center gap-1 text-[15px]">
               <HeartPlus size={18} className="text-gray-600" />
-              <Share2 size={18} className="text-gray-600" />                     
+              <p className="hidden sm:flex">Wishlist</p>
+            </div>
+
+            <div className=" text-gray-500 flex items-center gap-1 text-[15px]">
+              <Share2 size={18} className="text-gray-600" />
+              <p className="hidden sm:flex">Share</p>
+            </div>
           </div>
         </div>
-        
       </div>
-      {
-        showModal && (
-          <DescriptionModal onClose={()=>setShowModal(false)}>
-              <FullDescriptionSection description={descriptionDetails}/>
-          </DescriptionModal>
-        )
-      }
+      {showModal && (
+        <DescriptionModal onClose={() => setShowModal(false)}>
+          <FullDescriptionSection description={descriptionDetails} />
+        </DescriptionModal>
+      )}
       {/* Above large screen */}
       <div className="hidden lg:flex flex-col">
         <div
@@ -202,7 +204,9 @@ function TitleSection() {
               <img src={question} alt="questions" className="h-8 shadow-2xl" />
 
               <h3>
-                <span className="text-lg font-semibold">{formatToK(totalQuestions)}</span>{" "}
+                <span className="text-lg font-semibold">
+                  {formatToK(totalQuestions)}
+                </span>{" "}
                 Total Questions
               </h3>
             </div>
