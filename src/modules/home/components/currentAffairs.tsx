@@ -75,9 +75,9 @@ export function CurrentAffairs() {
           {currentAffairsData?.data.map((item) => (
             <CarouselItem
               key={item._id}
-              className="basis-1/1 sm:basis-1/2 lg:basis-1/4 p-4"
+              className="basis-1/1 sm:basis-1/2 lg:basis-1/4 p-4 group"
             >
-              <div className=" bg-white rounded-xl shadow-md border border-sky-100/60 space-y-3">
+              <div className=" transition-transform duration-300 ease-in-out group-hover:scale-102 group-hover:-translate-y-2 bg-white rounded-xl shadow-md border border-sky-100/60 space-y-3">
                 {/* image section */}
                 <div className="overflow-hidden relative">
                   <img
@@ -122,10 +122,10 @@ export function CurrentAffairs() {
 
                   {/* read more section */}
 
-                  <div className="flex justify-center pt-4 pb-5">
-                    <button className="text-sm text-button-blue flex gap-2">
+                  <div className="flex justify-center my-5 px-3 py-2 group-hover:bg-gray-100  rounded-lg cursor-pointer">
+                    <button className="text-sm text-button-blue flex gap-2 cursor-pointer group-hover:text-gray-700">
                       Read Full Article
-                      <ExternalLink size={16} />
+                      <ExternalLink size={16} className="cursor-pointer group-hover:text-gray-600"/>
                     </button>
                   </div>
                 </div>
