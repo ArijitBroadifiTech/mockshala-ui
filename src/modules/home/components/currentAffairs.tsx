@@ -15,6 +15,7 @@ import { IMAGE_BASE_URL } from "@/api/url";
 import { Badge } from "@/components/ui/badge";
 import Autoplay from "embla-carousel-autoplay";
 import { Link, useParams } from "@tanstack/react-router";
+import { formatDate } from "@/utils/formatting/formatDate";
 
 export function CurrentAffairs() {
   //for translation
@@ -33,16 +34,7 @@ export function CurrentAffairs() {
 
   //   console.log("Affairs data", currentAffairsData);
 
-  //   format published date
-  function formatDate(dateStr: string) {
-    const formattedDate = new Date(dateStr).toLocaleDateString("en-US", {
-      month: "short",
-      day: "2-digit",
-      year: "numeric",
-    });
 
-    return formattedDate;
-  }
 
   return (
     <div className=" w-full container px-4 py-2 mx-auto lg:mt-20">
@@ -59,7 +51,7 @@ export function CurrentAffairs() {
 
       {/* testing */}
         <div className="flex items-center">
-          <Link to="/$lang/current-affairs" params={{ lang: baseLanguage }}>
+          <Link to="/$lang/current-affairs" params={{ lang: baseLanguage }} search={{}}>
             <button
               className="text-button-blue flex items-center gap-1 font-medium 
               cursor-pointer hover:bg-gray-100 p-2 rounded-lg hover:shadow-md hover:-translate-y-1

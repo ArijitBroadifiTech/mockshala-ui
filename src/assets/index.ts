@@ -3,7 +3,8 @@ import imgFallBack from '@/assets/fallback/imgFallBack.png';
 import question from '@/assets/description/question-mark.png'
 import testCount from '@/assets/description/test-count.png'
 import validityImg from '@/assets/description/validity.png'
+import NoResultFoundImg from '@/assets/fallback/NoResultFoundImg.jpg'
 
 export {mockShalaLogo, imgFallBack, 
-    question, testCount,validityImg
+    question, testCount,validityImg, NoResultFoundImg
 }
