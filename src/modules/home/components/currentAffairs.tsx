@@ -14,10 +14,16 @@ import { QUERY_CONFIG } from "@/api/config";
 import { IMAGE_BASE_URL } from "@/api/url";
 import { Badge } from "@/components/ui/badge";
 import Autoplay from "embla-carousel-autoplay";
+import { Link, useParams } from "@tanstack/react-router";
 
 export function CurrentAffairs() {
   //for translation
   const { t } = useTranslation();
+
+  //Fetch the language params
+  const { lang } = useParams({ strict: false });
+
+  const baseLanguage = lang ?? "en";
 
   const { data: currentAffairsData } = useQuery({
     queryKey: homeQueryKey.currentAffairs(),
@@ -52,10 +58,16 @@ export function CurrentAffairs() {
         </div>
 
         <div className="flex items-center">
-          <button className="text-button-blue flex items-center gap-1 font-medium cursor-pointer">
-            View All
-            <ArrowRight size={17} />
-          </button>
+          <Link to="/$lang/current-affairs" params={{ lang: baseLanguage }}>
+            <button
+              className="text-button-blue flex items-center gap-1 font-medium 
+              cursor-pointer hover:bg-gray-100 p-2 rounded-lg hover:shadow-md hover:-translate-y-1
+              transition-all duration-300"
+            >
+              View All
+              <ArrowRight size={17} />
+            </button>
+          </Link>
         </div>
       </div>
 
@@ -125,7 +137,10 @@ export function CurrentAffairs() {
                   <div className="flex justify-center my-5 px-3 py-2 group-hover:bg-gray-100  rounded-lg cursor-pointer">
                     <button className="text-sm text-button-blue flex gap-2 cursor-pointer group-hover:text-gray-700">
                       Read Full Article
-                      <ExternalLink size={16} className="cursor-pointer group-hover:text-gray-600"/>
+                      <ExternalLink
+                        size={16}
+                        className="cursor-pointer group-hover:text-gray-600"
+                      />
                     </button>
                   </div>
                 </div>
